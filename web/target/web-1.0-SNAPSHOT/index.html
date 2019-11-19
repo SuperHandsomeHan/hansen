@@ -281,7 +281,19 @@
   <!-- End custom js for this page-->
   <script src="js/jquery-1.12.4.min.js"></script>
   <script>
+
+    function init() {
+      $.ajax({
+        url : 'get_user_info',
+        method : 'get',
+        success : function (result) {
+          alert(result.message);
+        }
+      });
+    }
+
     $(function () {
+      init();
       $('#content-wrapper').load('people.html');
     });
 

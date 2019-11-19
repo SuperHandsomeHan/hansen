@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Users {
     private String uid;
-    private String uname;
+    private String userName;
     private Integer age;
     private String sex;
     private Grade grade;
@@ -20,14 +20,6 @@ public class Users {
     private Date outTime;
     private String idCard;
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getUid() {
         return uid;
     }
@@ -36,12 +28,12 @@ public class Users {
         this.uid = uid;
     }
 
-    public String getUname() {
-        return uname;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Integer getAge() {
@@ -82,6 +74,14 @@ public class Users {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Double getMoney() {

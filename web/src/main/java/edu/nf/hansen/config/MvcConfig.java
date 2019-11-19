@@ -45,6 +45,7 @@ public class MvcConfig implements WebMvcConfigurer {
      * 配置内部资源视图解析器
      * @return
      */
+    @Bean
     public InternalResourceViewResolver viewResolver(){
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/jsp/");
@@ -91,6 +92,6 @@ public class MvcConfig implements WebMvcConfigurer {
          */
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/login.html", "/user_login", "/js/**", "/css/**");
+                .excludePathPatterns("/login.html", "/password_login", "/js/**", "/css/**");
     }
 }

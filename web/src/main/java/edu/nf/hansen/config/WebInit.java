@@ -1,6 +1,6 @@
 package edu.nf.hansen.config;
-
 import ch.qos.logback.ext.spring.web.LogbackConfigListener;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -15,6 +15,7 @@ import java.util.EnumSet;
  * @date 2019/11/18
  * 取代web.xml文件
  */
+@Configuration
 public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     /**

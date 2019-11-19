@@ -50,8 +50,8 @@ public class AppConfig {
         DruidDataSource ds = new DruidDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         ds.setUrl("jdbc:mysql://localhost:3306/car_repair?useSSL=true&useUnicode=true&characterEncoding=utf-8");
-        ds.setUsername("root");
-        ds.setPassword("root");
+        ds.setUsername("Achine");
+        ds.setPassword("qq520340");
         ds.setMaxActive(200);
         ds.setInitialSize(5);
         ds.setMinIdle(5);

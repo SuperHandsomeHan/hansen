@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.nf.hansen.dao.UserDao">
-    <resultMap id="userMap" type="users">
+    <resultMap id="userMap" type="edu.nf.hansen.entity.Users">
         <id property="uid" column="u_id"/>
-        <result property="uname" column="u_name"/>
+        <result property="userName" column="u_name"/>
         <result property="age" column="u_age"/>
         <result property="sex" column="u_sex"/>
         <association property="grade" resultMap="gradeMap"/>
@@ -17,12 +17,12 @@
         <result property="idCard" column="u_idcard_id"/>
     </resultMap>
 
-    <resultMap id="gradeMap" type="grade">
+    <resultMap id="gradeMap" type="edu.nf.hansen.entity.Grade">
         <id property="gradeId" column="grade_id"/>
         <association property="level" resultMap="levelMap"/>
     </resultMap>
 
-    <resultMap id="levelMap" type="level">
+    <resultMap id="levelMap" type="edu.nf.hansen.entity.Level">
         <id property="levelId" column="level_id"/>
         <result property="levelName" column="level_name"/>
     </resultMap>
@@ -34,7 +34,7 @@
         left join grade_level l on g.grade_level = l.level_id
     </select>
     
-    <select id="getUserById" resultMap="userMap" parameterType="string">
+    <select id="getUserById" resultMap="userMap" parameterType="java.lang.String">
         SELECT u.u_id, u.u_name, u.u_age, u.u_sex, u.u_address, u.u_tel, u.u_pwd, u.u_money,
         u.join_date, u.out_date, u.u_idcard_id, g.grade_id, l.level_id, l.level_name
         FROM user_info u left join grade_info g on u.u_grade = g.grade_id
@@ -42,7 +42,7 @@
         where u.u_id = #{uid}
     </select>
 
-    <select id="getUserByTel" resultMap="userMap" parameterType="string">
+    <select id="getUserByTel" resultMap="userMap" parameterType="java.lang.String">
         SELECT u.u_id, u.u_name, u.u_age, u.u_sex, u.u_address, u.u_tel, u.u_pwd, u.u_money,
         u.join_date, u.out_date, u.u_idcard_id, g.grade_id, l.level_id, l.level_name
         FROM user_info u left join grade_info g on u.u_grade = g.grade_id
@@ -50,11 +50,11 @@
         where u.u_tel = #{tel}
     </select>
 
-    <update id="addUser" parameterType="users">
+    <update id="addUser" parameterType="edu.nf.hansen.entity.Users">
         insert into user_info(u_id, u_tel, u_pwd) values(#{uid}, #{tel}, #{password})
     </update>
 
-    <update id="updateUser" parameterType="users">
+    <update id="updateUser" parameterType="edu.nf.hansen.entity.Users">
         update user_info set u_name = #{uname}, u_age = #{age}, u_sex = #{sex}, u_address = #{address}, u_tel = #{tel},
         u_pwd = #{password}, u_money = #{money}, join_date = #{joinTime}, out_date = #{outTime}, u_idcard_id = #{idCard} where u_id = #{uid}
     </update>

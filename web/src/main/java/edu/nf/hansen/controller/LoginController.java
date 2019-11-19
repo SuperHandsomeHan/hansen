@@ -7,8 +7,6 @@ import edu.nf.hansen.service.LoginService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -28,7 +26,7 @@ public class LoginController extends BaseController {
     public ResponseVO login(String tel, String password, HttpSession session){
         service.login(tel, password);
         Users user = getUserInfoService.getUserInfo(tel);
-        session.setAttribute("userinfo", user);
+        session.setAttribute("userInfo", user);
         return success("登录成功！");
     }
 }

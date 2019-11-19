@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 /**
  * @author Achine
  * @date 2019/11/8
- * 定义拦截器
+ * 登录拦截器
  */
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -24,10 +24,11 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("进入拦截方法");
         HttpSession session = request.getSession();
-        if(session.getAttribute("userinfo") == null){
+        if(session.getAttribute("userInfo") == null){
             //重定向到登陆页面
-            response.sendRedirect("login.html");
+            response.sendRedirect("/login.html");
             //返回false，阻止后面的方法执行
             return false;
         }
