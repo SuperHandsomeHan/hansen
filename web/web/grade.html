@@ -1,0 +1,202 @@
+<meta charset="UTF-8">
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>职位设置</h1>
+                        <div class="d-flex">
+                            <i class="mdi mdi-home text-muted hover-cursor"></i>
+                            <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;登录&nbsp;/&nbsp;员工管理&nbsp;/&nbsp;</p>
+                            <p class="text-primary mb-0 hover-cursor">职位设置</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 50px;">
+                    <div class="col-8"></div>
+                    <div class="col-4" style="text-align: right;">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#add">
+                            <i class="mdi mdi-playlist-plus"></i>
+                            添加职位
+                        </button>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-12">
+                        <div class="table-responsive" style="height: 600px;">
+                            <table class="table table-hover table-striped table-bordered" style="text-align: center;">
+                                <thead>
+                                <tr>
+                                    <th>职位编号</th>
+                                    <th>职位名称</th>
+                                    <th>员工数量</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>10001</td>
+                                    <td>老板</td>
+                                    <td>2</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
+                                            <i class="mdi mdi-bitbucket"></i>
+                                            删除职位
+                                        </button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
+                                            <i class="mdi mdi-bitbucket"></i>
+                                            修改职位
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>10001</td>
+                                    <td>经理</td>
+                                    <td>2</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
+                                            <i class="mdi mdi-bitbucket"></i>
+                                            删除职位
+                                        </button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
+                                            <i class="mdi mdi-bitbucket"></i>
+                                            修改职位
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div id="comment_page" align="right" style="padding:10px 0px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加商品类型模态框 -->
+<div class="modal fade bs-example-modal-lg" id="add" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">添加职位</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="forms-sample">
+                            <div class="form-group">
+                                <label>职位名称</label>
+                                <input type="text" class="form-control" placeholder="职位名称">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 修改商品类型模态框 -->
+<div class="modal fade bs-example-modal-lg" id="update" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">修改职位</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="forms-sample">
+                            <div class="form-group">
+                                <label>职位编号</label>
+                                <input type="text" class="form-control" placeholder="职位编号" value="1001" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>职位名称</label>
+                                <input type="text" class="form-control" placeholder="职位名称">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 删除类型模态框 -->
+<div class="modal fade bs-example-modal-sm" id="delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">删除职位</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <h4>你确定要删除吗？</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function search(province) {
+        province = $('#search-txt').val();
+        $.ajax({
+            url : 'list_city',
+            method : 'get',
+            data: 'pageNum=0&pageSize=10',
+            success : function (result) {
+                addTable(result.data.list);
+                $('#comment_page').pagination(result.data.total, { //第一个参数指定共多少条记录
+                    items_per_page: result.data.pageSize, // 每页显示多少条记录
+                    next_text: '下一页', //下一页按钮图标
+                    prev_text: '上一页', //上一页按钮图标
+                    num_display_entries: 5,//主体页数
+                    num_edge_entries: 2, //边缘页数
+                    callback: function (pageNum) {//定义一个回调函数，用于每次点击页码发起分页查询请求
+                        pageNum = ++pageNum;
+                        $.ajax({
+                            url: 'list_city',
+                            method: 'get',
+                            data: 'pageNum=' + pageNum + '&pageSize=' + result.data.pageSize + '&province=' + province,
+                            success: function (vo) {
+                                if(vo.code == 200){
+                                    addTable(vo.data.list);
+                                }else {
+                                    alert("数据库连接失败");
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    function addTable(data) {
+        $('#t1').empty();
+        $.each(data, function (index,obj) {
+            $('#t1').append(
+                '<tr>' +
+                '<td>' + obj.cityId + '</td>' +
+                '<td>' + obj.cityName + '</td>' +
+                '<td>' + obj.cityCode + '</td>' +
+                '<td>' + obj.province + '</td>' +
+                '</tr>'
+            );
+        });
+    }
+</script>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Hansen 汽修管理系统</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="img/LOGO.png" />
+  <!-- buttons -->
+  <link rel="stylesheet" href="css/buttons.css">
+  <!-- page -->
+  <link rel="stylesheet" href="css/pagination.css">
+</head>
+<body>
+  <div style="position: fixed; background-color: red; width: 100px;height: 100px;">
+    <span>打卡成功</span>
+  </div>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="navbar-brand-wrapper d-flex justify-content-center">
+        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+          <a class="navbar-brand brand-logo" href="index.html"><img src="img/LOGO2.png" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-sort-variant"></span>
+          </button>
+        </div>  
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav mr-lg-4 w-100">
+          <li class="nav-item nav-search d-none d-lg-block w-100">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="search">
+                  <i class="mdi mdi-magnify"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" placeholder="搜索，暂未开放..." aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <!-- 右边菜单 -->
+        <ul class="navbar-nav navbar-nav-right">
+          <!-- 消息 -->
+          <li class="nav-item dropdown mr-1">
+            <button type="button" class="btn btn-outline-danger btn-icon mr-3 mt-2 mt-xl-0" id="boss_btn">
+              <i class="mdi mdi-fingerprint"></i>
+              BOSS
+            </button>
+          </li>
+          <!-- 通知 -->
+          <li class="nav-item dropdown mr-1">
+            <button type="button" class="btn btn-outline-info btn-icon mr-3 mt-2 mt-xl-0" data-toggle="modal" data-target="#btn-card">
+              <i class="mdi mdi-lightbulb"></i>
+              打卡
+            </button>
+          </li>
+          <!-- 用户 -->
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <span class="nav-profile-name">李顺</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" data-toggle="modal" data-target="#set_model">
+                <i class="mdi mdi-settings text-primary"></i>
+                设置
+              </a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#out_btn">
+                <i class="mdi mdi-logout text-primary"></i>
+                注销
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title" id="people-btn">个人中心</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="mdi mdi-circle-outline menu-icon"></i>
+              <span class="menu-title">商品管理</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="javascript:void(0)" id="goods-btn">商品列表</a></li>
+                <li class="nav-item"> <a class="nav-link" href="javascript:void(0)" id="goodstype-btn">类型设置</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-we" aria-expanded="false" aria-controls="ui-we">
+              <i class="mdi mdi-airplay menu-icon"></i>
+              <span class="menu-title">供应商管理</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-we">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="javascript:void(0)" id="supplier-btn">供应商设置</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-w2e" aria-expanded="false" aria-controls="ui-w2e">
+              <i class="mdi mdi-account-multiple menu-icon"></i>
+              <span class="menu-title">员工管理</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-w2e">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="javascript:void(0)" id="user_list">员工列表</a></li>
+                <li class="nav-item"> <a class="nav-link" href="javascript:void(0)" id="grade_info">职位设置</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <!-- 主要内容 -->
+        <div class="content-wrapper" id="content-wrapper">
+
+        </div>
+        <!-- 打卡模态框 -->
+        <div class="modal fade bs-example-modal-lg" id="btn-card" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-body" style="text-align: center;">
+                <p>
+                  <span style="font-weight: bold; font-size: 50px;" class="text-success">√</span>
+                  <span style="font-size: 30px; font-weight: bold;padding-left: 15px;">打卡成功</span>
+                </p>
+                <p>
+                  <span style="font-size: 20px;">打卡时间：2019.11.14 15:20:00</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 退出模态框 -->
+        <div class="modal fade bs-example-modal-sm" id="out_btn" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">退出</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                <h4>你确定要退出吗？</h4>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="sign_out">退出</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 设置模态框 -->
+        <div class="modal fade bs-example-modal-lg" id="set_model" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">设置</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                <div class="card">
+                  <div class="card-header">
+                    <h4><b>基本信息</b></h4>
+                  </div>
+                  <div class="card-body">
+                    <form class="forms-sample">
+                      <div class="form-group">
+                        <label>员工编号</label>
+                        <input type="text" class="form-control" placeholder="员工编号" value="1001" readonly>
+                      </div>
+                      <div class="form-group">
+                        <label>姓 名</label>
+                        <input type="text" class="form-control" placeholder="姓 名" value="李顺" readonly>
+                      </div>
+                      <div class="form-group">
+                        <label>年 龄</label>
+                        <input type="text" class="form-control" placeholder="年 龄" value="21">
+                      </div>
+                      <div class="form-group">
+                        <label>性 别</label>
+                        <input type="text" class="form-control" placeholder="性 别" value="男">
+                      </div>
+                      <div class="form-group">
+                        <input type="button" class="btn btn-primary form-control" value="保存">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <!-- 安全设置 -->
+                <div class="card">
+                  <div class="card-header">
+                    <h4><b>安全设置</b></h4>
+                  </div>
+                  <div class="card-body">
+                    <form class="forms-sample">
+                      <div class="form-group">
+                        <label>修改密码</label>
+                      </div>
+                      <div class="form-group" style="text-align: right;">
+                        <input type="password" class="form-control" placeholder="密码..." style="margin-bottom: 10px;">
+                        <input type="text" class="form-control" placeholder="验证码..." style="margin-bottom: 10px;">
+                        <input type="button" class="btn btn-primary" value="获取验证码">
+                      </div>
+                      <div class="form-group">
+                        <input type="button" class="btn btn-primary form-control" value="修改">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright &copy; 2019.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">Hansen</a></span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="vendors/base/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="vendors/chart.js/Chart.min.js"></script>
+  <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/template.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="js/dashboard.js"></script>
+  <script src="js/data-table.js"></script>
+  <script src="js/jquery.dataTables.js"></script>
+  <script src="js/dataTables.bootstrap4.js"></script>
+  <!-- page -->
+  <script src="js/jquery.pagination.js"></script>
+  <!-- End custom js for this page-->
+  <script src="js/jquery-1.12.4.min.js"></script>
+  <script>
+    $(function () {
+      $('#content-wrapper').load('people.html');
+    });
+
+    $(function () {
+      $('#people-btn').on('click',function () {
+        $('#content-wrapper').load('people.html');
+      });
+      $('#goods-btn').on('click',function () {
+        $('#content-wrapper').load('goods.html');
+      });
+      $('#goodstype-btn').on('click',function () {
+        $('#content-wrapper').load('goodstype.html');
+      });
+      $('#supplier-btn').on('click',function () {
+        $('#content-wrapper').load('supplier.html');
+      });
+      $('#user_list').on('click',function () {
+        $('#content-wrapper').load('user.html');
+      });
+      $('#grade_info').on('click',function () {
+          $('#content-wrapper').load('grade.html');
+      });
+      $('#sign_out').on('click',function () {
+        location.href = "login.html";
+      });
+      $('#boss_btn').on('click',function () {
+        $('#content-wrapper').load('boss.html');
+      });
+    });
+  </script>
+</body>
+
+</html>
+
