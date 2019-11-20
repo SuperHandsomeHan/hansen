@@ -287,6 +287,9 @@
         url : 'get_user_info',
         method : 'get',
         success : function (result) {
+          if(result.code == 401){
+            location.href = "login.html";
+          }
           alert(result.message);
         }
       });

@@ -1,5 +1,7 @@
 package edu.nf.hansen.controller.interceptor;
 
+import com.google.gson.Gson;
+import edu.nf.hansen.controller.vo.ResponseVO;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,8 +29,16 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("进入拦截方法");
         HttpSession session = request.getSession();
         if(session.getAttribute("userInfo") == null){
-            //重定向到登陆页面
-            response.sendRedirect("/login.html");
+            if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+                ResponseVO vo = new ResponseVO();
+                vo.setCode(401);
+                response.setContentType("application/json;charset=utf-8");
+                String json = new Gson().toJson(vo);
+                response.getWriter().println(json);
+            }else {
+                String root = request.getContextPath();
+                response.sendRedirect(root+"/login.html");
+            }
             //返回false，阻止后面的方法执行
             return false;
         }

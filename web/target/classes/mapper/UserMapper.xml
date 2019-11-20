@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.nf.hansen.dao.UserDao">
-    <resultMap id="userMap" type="edu.nf.hansen.entity.Users">
+
+    <resultMap id="userMap" type="users">
         <id property="uid" column="u_id"/>
         <result property="userName" column="u_name"/>
         <result property="age" column="u_age"/>
         <result property="sex" column="u_sex"/>
-        <association property="grade" resultMap="gradeMap"/>
         <result property="address" column="u_address"/>
         <result property="tel" column="u_tel"/>
         <result property="password" column="u_pwd"/>
@@ -15,14 +15,15 @@
         <result property="joinTime" column="join_date"/>
         <result property="outTime" column="out_date"/>
         <result property="idCard" column="u_idcard_id"/>
+        <association property="grade" resultMap="gradeMap"/>
     </resultMap>
 
-    <resultMap id="gradeMap" type="edu.nf.hansen.entity.Grade">
+    <resultMap id="gradeMap" type="grade">
         <id property="gradeId" column="grade_id"/>
         <association property="level" resultMap="levelMap"/>
     </resultMap>
 
-    <resultMap id="levelMap" type="edu.nf.hansen.entity.Level">
+    <resultMap id="levelMap" type="level">
         <id property="levelId" column="level_id"/>
         <result property="levelName" column="level_name"/>
     </resultMap>

@@ -11,14 +11,14 @@ public class Users {
     private String userName;
     private Integer age;
     private String sex;
-    private Grade grade;
     private String address;
     private String tel;
     private String password;
     private Double money;
     private Date joinTime;
-    private Date outTime;
     private String idCard;
+    private Date outTime;
+    private Grade grade;
 
     public String getUid() {
         return uid;
