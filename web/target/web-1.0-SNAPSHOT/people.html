@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-between flex-wrap">
             <div class="d-flex align-items-end flex-wrap">
                 <div class="mr-md-3 mr-xl-5">
-                    <h2>欢迎回来, <span>李顺</span>！！！</h2>
+                    <h2>欢迎回来, <span id="uname"></span>！！！</h2>
                     <p class="mb-md-0">下面是你的个人数据.</p>
                 </div>
                 <div class="d-flex">
@@ -95,13 +95,6 @@
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">今年请假数</small>
                                     <h5 class="mr-2 mb-0">50</h5>
-                                </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi mdi-bulletin-board mr-3 icon-lg text-success"></i>
-                                <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">今年假期</small>
-                                    <h5 class="mr-2 mb-0"><span>21</span> 天</h5>
                                 </div>
                             </div>
                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
@@ -274,3 +267,8 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+       $('#uname').text($('#user_name').text());
+    });
+</script>

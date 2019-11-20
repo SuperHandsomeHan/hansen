@@ -20,7 +20,6 @@ public class UserInfoController extends BaseController {
 
     @GetMapping("/get_user_info")
     public ResponseVO getUserInfoBySession(HttpSession session){
-        System.out.println("进入方法");
         return success(session.getAttribute("userInfo"));
     }
 }

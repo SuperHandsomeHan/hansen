@@ -24,7 +24,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 /**
  * 报扫描，只扫描controller包
  */
-@ComponentScan(basePackages = "edu.nf.hansen.controller")
+@ComponentScan("edu.nf.hansen.controller")
 /**
  * 启用mvc注解驱动，
  * 等同于配置文件<mvc:annotation-driven/>
@@ -92,6 +92,6 @@ public class MvcConfig implements WebMvcConfigurer {
          */
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/login.html", "/password_login", "/js/**", "/css/**");
+                .excludePathPatterns("/login.html", "/register.html", "/password_login", "/js/**", "/css/**");
     }
 }

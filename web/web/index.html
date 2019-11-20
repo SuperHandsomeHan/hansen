@@ -70,7 +70,7 @@
           <!-- 用户 -->
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <span class="nav-profile-name">李顺</span>
+              <span class="nav-profile-name" id="user_name"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" data-toggle="modal" data-target="#set_model">
@@ -290,7 +290,9 @@
           if(result.code == 401){
             location.href = "login.html";
           }
-          alert(result.message);
+          else{
+            $('#user_name').text(result.data.userName);
+          }
         }
       });
     }
@@ -298,6 +300,19 @@
     $(function () {
       init();
       $('#content-wrapper').load('people.html');
+      $('#sign_out').on('click',function () {
+        $.ajax({
+          url : 'sign_out',
+          method : 'get',
+          success : function (result) {
+            if(result.code == 200){
+              location.href = "login.html";
+            }else {
+              alert("服务器暂时断开连接");
+            }
+          }
+        });
+      });
     });
 
     $(function () {

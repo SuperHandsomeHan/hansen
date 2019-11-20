@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
  */
 @Service("pwdLoginService")
 public class PasswordLoginServiceImpl implements LoginService {
+
     @Autowired
     private UserDao dao;
 

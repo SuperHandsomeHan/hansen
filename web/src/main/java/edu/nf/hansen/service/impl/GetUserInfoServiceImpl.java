@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
  */
 @Service("getUserInfoService")
 public class GetUserInfoServiceImpl implements GetUserInfoService {
+    
     @Autowired
     private UserDao dao;
 

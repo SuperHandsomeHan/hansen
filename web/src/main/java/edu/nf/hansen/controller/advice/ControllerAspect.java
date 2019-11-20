@@ -5,6 +5,7 @@ import edu.nf.hansen.service.exception.LoginException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author Achine
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ControllerAspect {
 
     @ExceptionHandler(LoginException.class)
-    public ResponseVO handleDataAccessException(LoginException e){
+    @ResponseBody
+    public ResponseVO loginException(LoginException e){
         ResponseVO vo = new ResponseVO();
         vo.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
         vo.setMessage(e.getMessage());

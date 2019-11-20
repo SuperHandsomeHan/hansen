@@ -23,6 +23,12 @@ public class BaseController {
         return vo;
     }
 
+    protected ResponseVO success(){
+        ResponseVO vo = new ResponseVO();
+        vo.setCode(HttpStatus.OK.value());
+        return vo;
+    }
+
     protected ResponseVO fail(Integer code){
         ResponseVO vo = new ResponseVO();
         vo.setCode(code);

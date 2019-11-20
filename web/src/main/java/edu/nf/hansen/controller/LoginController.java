@@ -4,6 +4,7 @@ import edu.nf.hansen.controller.vo.ResponseVO;
 import edu.nf.hansen.entity.Users;
 import edu.nf.hansen.service.GetUserInfoService;
 import edu.nf.hansen.service.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +17,11 @@ import javax.servlet.http.HttpSession;
 @RestController
 public class LoginController extends BaseController {
 
+    @Autowired
     @Qualifier("pwdLoginService")
     private LoginService service;
 
+    @Autowired
     @Qualifier("getUserInfoService")
     private GetUserInfoService getUserInfoService;
 
@@ -27,6 +30,6 @@ public class LoginController extends BaseController {
         service.login(tel, password);
         Users user = getUserInfoService.getUserInfo(tel);
         session.setAttribute("userInfo", user);
-        return success("登录成功！");
+        return success();
     }
 }

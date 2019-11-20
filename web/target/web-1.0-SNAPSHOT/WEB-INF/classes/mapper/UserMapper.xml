@@ -51,11 +51,11 @@
         where u.u_tel = #{tel}
     </select>
 
-    <update id="addUser" parameterType="edu.nf.hansen.entity.Users">
+    <update id="addUser" parameterType="users">
         insert into user_info(u_id, u_tel, u_pwd) values(#{uid}, #{tel}, #{password})
     </update>
 
-    <update id="updateUser" parameterType="edu.nf.hansen.entity.Users">
+    <update id="updateUser" parameterType="users">
         update user_info set u_name = #{uname}, u_age = #{age}, u_sex = #{sex}, u_address = #{address}, u_tel = #{tel},
         u_pwd = #{password}, u_money = #{money}, join_date = #{joinTime}, out_date = #{outTime}, u_idcard_id = #{idCard} where u_id = #{uid}
     </update>
