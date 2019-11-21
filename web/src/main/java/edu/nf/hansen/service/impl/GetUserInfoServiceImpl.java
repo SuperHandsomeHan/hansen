@@ -3,7 +3,7 @@ package edu.nf.hansen.service.impl;
 import edu.nf.hansen.dao.UserDao;
 import edu.nf.hansen.entity.Users;
 import edu.nf.hansen.service.GetUserInfoService;
-import edu.nf.hansen.service.exception.LoginException;
+import edu.nf.hansen.service.exception.UserInfoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,16 +24,20 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
      */
     @Override
     public Users getUserInfo(String data) {
-        Users user = dao.getUserById(data);
-        if(user == null){
-            user = dao.getUserByTel(data);
+        try {
+            Users user = dao.getUserById(data);
             if(user == null){
-                throw new LoginException("没有该用户");
+                user = dao.getUserByTel(data);
+                if(user == null){
+                    throw new UserInfoException("没有该用户");
+                }else{
+                    return user;
+                }
             }else{
                 return user;
             }
-        }else{
-            return user;
+        }catch (Exception e){
+            throw new UserInfoException("服务器异常错误");
         }
     }
 }

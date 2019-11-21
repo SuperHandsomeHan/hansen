@@ -2,6 +2,7 @@ package edu.nf.hansen.controller.advice;
 
 import edu.nf.hansen.controller.vo.ResponseVO;
 import edu.nf.hansen.service.exception.LoginException;
+import edu.nf.hansen.service.exception.UserInfoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,4 +24,12 @@ public class ControllerAspect {
         return vo;
     }
 
+    @ExceptionHandler(UserInfoException.class)
+    @ResponseBody
+    public ResponseVO userInfoException(UserInfoException e){
+        ResponseVO vo = new ResponseVO();
+        vo.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        vo.setMessage(e.getMessage());
+        return vo;
+    }
 }

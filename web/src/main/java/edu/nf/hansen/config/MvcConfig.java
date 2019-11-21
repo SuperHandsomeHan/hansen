@@ -86,10 +86,6 @@ public class MvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        /**
-         * addPathPatterns方法拦截那些地址
-         * excludePathPatterns方法除了这些地址不需要拦截
-         */
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login.html", "/register.html", "/password_login", "/js/**", "/css/**");

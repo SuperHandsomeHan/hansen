@@ -27,7 +27,6 @@
         <id property="levelId" column="level_id"/>
         <result property="levelName" column="level_name"/>
     </resultMap>
-
     <select id="listUser" resultMap="userMap">
         SELECT u.u_id, u.u_name, u.u_age, u.u_sex, u.u_address, u.u_tel, u.u_pwd, u.u_money,
         u.join_date, u.out_date, u.u_idcard_id, g.grade_id, l.level_id, l.level_name
@@ -51,12 +50,16 @@
         where u.u_tel = #{tel}
     </select>
 
-    <update id="addUser" parameterType="users">
-        insert into user_info(u_id, u_tel, u_pwd) values(#{uid}, #{tel}, #{password})
-    </update>
+    <insert id="addUser" parameterType="users">
+        insert into user_info(u_id, u_tel, u_name) values(#{uid}, #{tel}, #{userName})
+    </insert>
 
     <update id="updateUser" parameterType="users">
-        update user_info set u_name = #{uname}, u_age = #{age}, u_sex = #{sex}, u_address = #{address}, u_tel = #{tel},
+        update user_info set u_name = #{userName}, u_age = #{age}, u_sex = #{sex}, u_address = #{address}, u_tel = #{tel},
         u_pwd = #{password}, u_money = #{money}, join_date = #{joinTime}, out_date = #{outTime}, u_idcard_id = #{idCard} where u_id = #{uid}
     </update>
+
+    <delete id="deleteUser" parameterType="java.lang.String">
+        delete from user_info where u_id = #{uid}
+    </delete>
 </mapper>

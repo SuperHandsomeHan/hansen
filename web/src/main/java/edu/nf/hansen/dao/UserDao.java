@@ -10,6 +10,7 @@ import java.util.List;
  * @date 2019/11/18
  */
 public interface UserDao {
+
     List<Users> listUser(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
     Users getUserById(String uid);
@@ -19,4 +20,6 @@ public interface UserDao {
     void addUser(Users user);
 
     void updateUser(Users user);
+
+    void deleteUser(String uid);
 }

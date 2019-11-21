@@ -1,5 +1,6 @@
 package edu.nf.hansen.config;
 import ch.qos.logback.ext.spring.web.LogbackConfigListener;
+import edu.nf.hansen.filter.LoginFilter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
