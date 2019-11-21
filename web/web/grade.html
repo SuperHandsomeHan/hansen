@@ -34,37 +34,7 @@
                                     <th>操作</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>10001</td>
-                                    <td>老板</td>
-                                    <td>2</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            删除职位
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            修改职位
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>10001</td>
-                                    <td>经理</td>
-                                    <td>2</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            删除职位
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            修改职位
-                                        </button>
-                                    </td>
-                                </tr>
+                                <tbody id="tab1">
                                 </tbody>
                             </table>
                             <div id="comment_page" align="right" style="padding:10px 0px"></div>
@@ -86,10 +56,10 @@
             <div class="modal-body">
                 <div class="card">
                     <div class="card-body">
-                        <form class="forms-sample">
+                        <form class="forms-sample" id="from_add">
                             <div class="form-group">
                                 <label>职位名称</label>
-                                <input type="text" class="form-control" placeholder="职位名称">
+                                <input type="text" class="form-control" placeholder="职位名称" name="levelName" id="add_levelName">
                             </div>
                         </form>
                     </div>
@@ -97,7 +67,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">添加</button>
+                <button type="button" class="btn btn-primary" id="finish_add_btn">添加</button>
             </div>
         </div>
     </div>
@@ -113,14 +83,14 @@
             <div class="modal-body">
                 <div class="card">
                     <div class="card-body">
-                        <form class="forms-sample">
+                        <form class="forms-sample" id="from_update">
                             <div class="form-group">
                                 <label>职位编号</label>
-                                <input type="text" class="form-control" placeholder="职位编号" value="1001" readonly>
+                                <input type="text" class="form-control" placeholder="职位编号" name="levelId" id="update_levelId" readonly>
                             </div>
                             <div class="form-group">
                                 <label>职位名称</label>
-                                <input type="text" class="form-control" placeholder="职位名称">
+                                <input type="text" class="form-control" placeholder="职位名称" name="levelName" id="update_levelName">
                             </div>
                         </form>
                     </div>
@@ -128,7 +98,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">修改</button>
+                <button type="button" class="btn btn-primary" id="finish_update_btn">修改</button>
             </div>
         </div>
     </div>
@@ -146,16 +116,60 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">删除</button>
+                <button type="button" class="btn btn-primary" id="finish_delete_btn">删除</button>
             </div>
         </div>
     </div>
 </div>
+<script src="js/jquery.pagination.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script>
-    function search(province) {
-        province = $('#search-txt').val();
+    var levelId;
+    $(function () {
+       init();
+        $('#finish_update_btn').on('click',function () {
+            $.ajax({
+                url : 'update_level',
+                method : 'post',
+                data : $('#from_update').serialize(),
+                success : function (result) {
+                    alert(result.message);
+                    if(result.code == 200){
+                        init();
+                    }
+                }
+            });
+        });
+        $('#finish_delete_btn').on('click',function () {
+            $.ajax({
+                url : 'delete_level',
+                method : 'post',
+                data : "levelId=" + levelId,
+                success : function (result) {
+                    alert(result.message);
+                    if(result.code == 200){
+                        init();
+                    }
+                }
+            });
+        });
+        $('#finish_add_btn').on('click',function () {
+            $.ajax({
+                url : 'add_level',
+                method : 'post',
+                data : $('#from_add').serialize(),
+                success : function (result) {
+                    alert(result.message);
+                    if(result.code == 200){
+                        init();
+                    }
+                }
+            });
+        });
+    });
+    function init() {
         $.ajax({
-            url : 'list_city',
+            url : 'list_level',
             method : 'get',
             data: 'pageNum=0&pageSize=10',
             success : function (result) {
@@ -169,9 +183,9 @@
                     callback: function (pageNum) {//定义一个回调函数，用于每次点击页码发起分页查询请求
                         pageNum = ++pageNum;
                         $.ajax({
-                            url: 'list_city',
+                            url: 'list_level',
                             method: 'get',
-                            data: 'pageNum=' + pageNum + '&pageSize=' + result.data.pageSize + '&province=' + province,
+                            data: 'pageNum=' + pageNum + '&pageSize=' + result.data.pageSize,
                             success: function (vo) {
                                 if(vo.code == 200){
                                     addTable(vo.data.list);
@@ -185,18 +199,50 @@
             }
         });
     }
-
+    function clearUpdate(){
+        $('#update_levelName').val("");
+        $('#update_levelId').val("");
+    }
+    function loadUpdate(data) {
+        $('#update_levelName').val(data.levelName);
+        $('#update_levelId').val(data.levelId);
+    }
     function addTable(data) {
-        $('#t1').empty();
+        $('#tab1').empty();
         $.each(data, function (index,obj) {
-            $('#t1').append(
+            $('#tab1').append(
                 '<tr>' +
-                '<td>' + obj.cityId + '</td>' +
-                '<td>' + obj.cityName + '</td>' +
-                '<td>' + obj.cityCode + '</td>' +
-                '<td>' + obj.province + '</td>' +
+                '<td>' + obj.levelId + '</td>' +
+                '<td>' + obj.levelName + '</td>' +
+                '<td>' + obj.levelNum + '</td>' +
+                '<td>' +
+                '<button type="button" class="btn btn-danger btn-sm delete-btn" data-toggle="modal" data-target="#delete">' +
+                '<i class="mdi mdi-bitbucket"></i>' +
+                '删除职位' +
+                '</button>' +
+                '<button type="button" class="btn btn-success btn-sm update-btn" data-toggle="modal" data-target="#update">' +
+                '<i class="mdi mdi-bitbucket"></i>' +
+                '修改职位' +
+                '</button>' +
+                '<input type="hidden" value="' + obj.levelId + '">' +
+                '</td>' +
                 '</tr>'
             );
+            $('.update-btn').on('click',function (){
+                levelId = $(this).next().val();
+                clearUpdate();
+                $.ajax({
+                    url : 'get_level',
+                    method : 'get',
+                    data : 'levelId=' + levelId,
+                    success : function (result) {
+                        loadUpdate(result.data);
+                    }
+                });
+            });
+            $('.delete-btn').on('click',function (){
+                levelId = $(this).next().next().val();
+            });
         });
     }
 </script>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.hansen.dao.SupplierDao">
+    <resultMap id="supplierMap" type="supplier">
+        <id property="levelId" column="level_id"/>
+        <result property="levelName" column="level_name"/>
+        <result property="levelNum" column="level_num"/>
+    </resultMap>
+    <select id="listLevel" resultMap="levelMap">
+        SELECT l.level_id, l.level_name, count(l.level_name) as level_num from grade_level l left join grade_info g on l.level_id = g.grade_level GROUP BY l.level_id
+    </select>
+    
+    <select id="getLevelById" resultMap="levelMap" parameterType="java.lang.String">
+        SELECT level_id, level_name from grade_level where level_id = #{levelId}
+    </select>
+
+    <select id="getLevelByName" resultMap="levelMap" parameterType="java.lang.String">
+        SELECT level_id, level_name from grade_level where level_name = #{levelName}
+    </select>
+
+    <insert id="addLevel" parameterType="level">
+        insert into grade_level(level_name) values(#{levelName})
+    </insert>
+
+    <update id="updateLevel" parameterType="level">
+        update grade_level set level_name = #{levelName} where level_id = #{levelId}
+    </update>
+
+    <delete id="deleteLevel" parameterType="java.lang.String">
+        delete from grade_level where level_id = #{levelId}
+    </delete>
+</mapper>

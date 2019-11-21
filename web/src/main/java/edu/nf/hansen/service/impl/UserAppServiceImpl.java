@@ -29,6 +29,10 @@ public class UserAppServiceImpl implements UserAppService {
     @Override
     public void addUser(Users user) {
         try {
+            Users u = dao.getUserByTel(user.getTel());
+            if(u != null){
+                throw new UserInfoException("该用户已经存在");
+            }
             user.setUid(UUIDUtils.createUUID());
             dao.addUser(user);
         }catch (Exception e){
@@ -39,6 +43,10 @@ public class UserAppServiceImpl implements UserAppService {
     @Override
     public void deleteUser(String uid) {
         try {
+            Users u = dao.getUserById(uid);
+            if(u == null){
+                throw new UserInfoException("该用户不存在");
+            }
             dao.deleteUser(uid);
         }catch (Exception e){
             throw new UserInfoException("删除失败");

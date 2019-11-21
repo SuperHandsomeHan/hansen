@@ -7,6 +7,7 @@ package edu.nf.hansen.entity;
 public class Level {
     private Integer levelId;
     private String levelName;
+    private Integer levelNum;
 
     public Integer getLevelId() {
         return levelId;
@@ -22,5 +23,13 @@ public class Level {
 
     public void setLevelName(String levelName) {
         this.levelName = levelName;
+    }
+
+    public Integer getLevelNum() {
+        return levelNum;
+    }
+
+    public void setLevelNum(Integer levelNum) {
+        this.levelNum = levelNum;
     }
 }

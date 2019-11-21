@@ -42,43 +42,8 @@
                                     <th>操作</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>10001</td>
-                                    <td>配件</td>
-                                    <td>2</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            删除类型
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            修改类型
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>10001</td>
-                                    <td>配件</td>
-                                    <td>2</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            删除类型
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            修改类型
-                                        </button>
-                                    </td>
-                                </tr>
+                                <tbody id="tab1">
+
                                 </tbody>
                             </table>
                             <div id="comment_page" align="right" style="padding:10px 0px"></div>
@@ -166,10 +131,13 @@
     </div>
 </div>
 <script>
-    function search(province) {
+    $(function () {
+       init();
+    });
+    function init() {
         province = $('#search-txt').val();
         $.ajax({
-            url : 'list_city',
+            url : 'list_level',
             method : 'get',
             data: 'pageNum=0&pageSize=10',
             success : function (result) {
@@ -183,9 +151,9 @@
                     callback: function (pageNum) {//定义一个回调函数，用于每次点击页码发起分页查询请求
                         pageNum = ++pageNum;
                         $.ajax({
-                            url: 'list_city',
+                            url: 'list_level',
                             method: 'get',
-                            data: 'pageNum=' + pageNum + '&pageSize=' + result.data.pageSize + '&province=' + province,
+                            data: 'pageNum=' + pageNum + '&pageSize=' + result.data.pageSize,
                             success: function (vo) {
                                 if(vo.code == 200){
                                     addTable(vo.data.list);
@@ -201,14 +169,26 @@
     }
 
     function addTable(data) {
-        $('#t1').empty();
+        $('#tab1').empty();
         $.each(data, function (index,obj) {
-            $('#t1').append(
+            $('#tab1').append(
                 '<tr>' +
-                '<td>' + obj.cityId + '</td>' +
-                '<td>' + obj.cityName + '</td>' +
-                '<td>' + obj.cityCode + '</td>' +
-                '<td>' + obj.province + '</td>' +
+                '<td>' +
+                '<input type="checkbox">' +
+                '</td>' +
+                '<td>10001</td>' +
+                '<td>配件</td>' +
+                '<td>2</td>' +
+                '<td>' +
+                '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">' +
+                '<i class="mdi mdi-bitbucket"></i>' +
+                '删除类型' +
+                '</button>' +
+                '<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">' +
+                '<i class="mdi mdi-bitbucket"></i>' +
+                '修改类型' +
+                '</button>' +
+                '</td>' +
                 '</tr>'
             );
         });
