@@ -69,11 +69,13 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public void deleteSupplier(String sid) {
+    public void deleteSupplier(String ... sid) {
         try{
-            Supplier s = dao.getSupplierById(sid);
-            if(s != null){
-                throw new SupplierException("该供应商已经存在");
+            for (String id : sid){
+                Supplier s = dao.getSupplierById(id);
+                if(s == null){
+                    throw new SupplierException("该供应商不存在");
+                }
             }
             dao.deleteSupplier(sid);
         }catch (Exception e){

@@ -11,7 +11,7 @@ public class Goods {
     private Double buyPrice;
     private Double sellPrice;
     private Double repairPrice;
-    private Supplier supplier;
+    private Integer sid;
 
     public Integer getGid() {
         return gid;
@@ -61,11 +61,11 @@ public class Goods {
         this.repairPrice = repairPrice;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public Integer getSid() {
+        return sid;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setSid(Integer sid) {
+        this.sid = sid;
     }
 }

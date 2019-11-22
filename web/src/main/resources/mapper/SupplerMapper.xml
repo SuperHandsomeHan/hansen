@@ -28,7 +28,10 @@
         update supplier_info set s_name = #{sname}, s_tel = #{tel}, s_address = #{address} where s_id = #{sid}
     </update>
 
-    <delete id="deleteSupplier" parameterType="java.lang.String">
-        delete from supplier_info where s_id = #{sId}
+    <delete id="deleteSupplier" parameterType="collection">
+        delete from supplier_info where s_id in
+        <foreach collection="array" item="sid" open="(" close=")" separator=",">
+            #{sid}
+        </foreach>
     </delete>
 </mapper>

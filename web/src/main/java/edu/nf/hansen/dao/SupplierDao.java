@@ -21,5 +21,5 @@ public interface SupplierDao {
 
     void updateSupplier(Supplier supplier);
 
-    void deleteSupplier(String sid);
+    void deleteSupplier(String ... sid);
 }

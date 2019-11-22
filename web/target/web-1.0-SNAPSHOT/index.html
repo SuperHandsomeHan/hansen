@@ -109,7 +109,6 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="javascript:void(0)" id="goods-btn">商品列表</a></li>
-                <li class="nav-item"> <a class="nav-link" href="javascript:void(0)" id="goodstype-btn">类型设置</a></li>
               </ul>
             </div>
           </li>
@@ -321,9 +320,6 @@
       });
       $('#goods-btn').on('click',function () {
         $('#content-wrapper').load('goods.html');
-      });
-      $('#goodstype-btn').on('click',function () {
-        $('#content-wrapper').load('goodstype.html');
       });
       $('#supplier-btn').on('click',function () {
         $('#content-wrapper').load('supplier.html');

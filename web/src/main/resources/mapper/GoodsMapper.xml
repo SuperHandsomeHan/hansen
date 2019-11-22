@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.nf.hansen.dao.SupplierDao">
-    <resultMap id="supplierMap" type="supplier">
+<mapper namespace="edu.nf.hansen.dao.GoodsDao">
+    <resultMap id="goodsMap" type="goods">
         <id property="sid" column="s_id"/>
         <result property="sname" column="s_name"/>
         <result property="tel" column="s_tel"/>
