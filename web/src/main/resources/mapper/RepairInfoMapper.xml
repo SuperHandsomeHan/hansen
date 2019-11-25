@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.hansen.dao.RepairInfoDao">
+
+    <resultMap id="repairInfoMap" type="repairInfo">
+        <id property="rid" column="r_id"/>
+        <result property="remarks" column="r_remark"/>
+        <result property="carUserName" column="car_user_name"/>
+        <result property="carUserTel" column="car_user_tel"/>
+        <result property="rtime" column="r_time"/>
+        <result property="price" column="r_price"/>
+        <result property="status" column="r_status"/>
+        <association property="user" resultMap="userMap"/>
+        <association property="goods" resultMap="goodsMap"/>
+    </resultMap>
+
+    <resultMap id="userMap" type="users">
+        <id property="uid" column="u_id"/>
+        <result property="userName" column="u_name"/>
+    </resultMap>
+
+    <resultMap id="goodsMap" type="goods">
+        <id property="gid" column="g_id"/>
+        <result property="gname" column="g_name"/>
+    </resultMap>
+
+    <select id="listRepairInfo" resultMap="repairInfoMap">
+        select r.r_id, r.r_remark, r.r_time, r.r_price, r.car_user_tel, r.car_user_name,
+        r.r_status, u.u_id, u.u_name, g.g_id, g.g_name
+        from repair_info r left join user_info u on r.u_id = u.u_id left join goods_info g on r.g_id = g.g_id
+        ORDER BY r.r_time desc
+    </select>
+    
+    <select id="getRepairInfoById" resultMap="repairInfoMap" parameterType="java.lang.String">
+        select r.r_id, r.r_remark, r.r_time, r.r_price, r.car_user_tel, r.car_user_name,
+        r.r_status, u.u_id, u.u_name, g.g_id, g.g_name
+        from repair_info r left join user_info u on r.u_id = u.u_id left join goods_info g on r.g_id = g.g_id
+        where r.r_id = #{rid}
+    </select>
+
+    <insert id="addRepairInfo" parameterType="repairInfo">
+        insert into repair_info(r_id, r_remark, r_time, r_price, r_status, car_user_name, car_user_tel, g_id, u_id)
+        values(#{rid}, #{remarks}, #{rtime}, #{price}, #{status}, #{carUserName}, #{carUserTel}, #{goods.gid}, #{user.uid})
+    </insert>
+
+    <update id="updateRepairInfo" parameterType="repairInfo">
+        update repair_info set r_status = #{status} where r_id = #{rid}
+    </update>
+</mapper>

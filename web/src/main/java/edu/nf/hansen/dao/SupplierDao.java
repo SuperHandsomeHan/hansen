@@ -13,6 +13,8 @@ public interface SupplierDao {
 
     List<Supplier> listSupplier(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
+    List<Supplier> listSupplier();
+
     Supplier getSupplierById(String sid);
 
     Supplier getSupplierByName(String sname);
@@ -21,5 +23,5 @@ public interface SupplierDao {
 
     void updateSupplier(Supplier supplier);
 
-    void deleteSupplier(String ... sid);
+    void deleteSupplier(String ... gid);
 }

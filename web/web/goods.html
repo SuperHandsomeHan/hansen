@@ -16,7 +16,7 @@
                 <div class="row" style="margin-top: 50px;">
                     <div class="col-8"></div>
                     <div class="col-4" style="text-align: right;">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#delete">
+                        <button type="button" class="btn btn-secondary" id="deletes" data-toggle="modal">
                             <i class="mdi mdi-bitbucket"></i>
                             批量删除商品
                         </button>
@@ -29,182 +29,28 @@
                 <div class="row" style="margin-top: 10px;">
                     <div class="col-12">
                         <div class="table-responsive" style="height: 600px;">
-                            <table class="table table-hover table-striped table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>
-                                        <input type="checkbox">
-                                        全选
-                                    </th>
-                                    <th>商品编号</th>
-                                    <th>商品名称</th>
-                                    <th>商品类型</th>
-                                    <th>进货价格</th>
-                                    <th>出售价格</th>
-                                    <th>维修价格</th>
-                                    <th>供应商</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>10001</td>
-                                    <td>后视镜</td>
-                                    <td>配件</td>
-                                    <td>￥200</td>
-                                    <td>￥300</td>
-                                    <td>￥100</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-inverse-info btn-rounded" style="width: 30px;height: 30px;" data-toggle="modal" data-target="#look_supplier">
-                                            <i class="mdi mdi-magnify"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            删除商品
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#update">
-                                            <i class="mdi mdi-bitbucket" data-toggle="modal" data-target="#update"></i>
-                                            修改商品
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>10001</td>
-                                    <td>后视镜</td>
-                                    <td>配件</td>
-                                    <td>￥200</td>
-                                    <td>￥300</td>
-                                    <td>￥100</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-inverse-info btn-rounded" style="width: 30px;height: 30px;" data-toggle="modal" data-target="#look_supplier">
-                                            <i class="mdi mdi-magnify"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            删除商品
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            修改商品
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>10001</td>
-                                    <td>后视镜</td>
-                                    <td>配件</td>
-                                    <td>￥200</td>
-                                    <td>￥300</td>
-                                    <td>￥100</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-inverse-info btn-rounded" style="width: 30px;height: 30px;" data-toggle="modal" data-target="#look_supplier">
-                                            <i class="mdi mdi-magnify"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            删除商品
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            修改商品
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>10001</td>
-                                    <td>后视镜</td>
-                                    <td>配件</td>
-                                    <td>￥200</td>
-                                    <td>￥300</td>
-                                    <td>￥100</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-inverse-info btn-rounded" style="width: 30px;height: 30px;" data-toggle="modal" data-target="#look_supplier">
-                                            <i class="mdi mdi-magnify"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            删除商品
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            修改商品
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>10001</td>
-                                    <td>后视镜</td>
-                                    <td>配件</td>
-                                    <td>￥200</td>
-                                    <td>￥300</td>
-                                    <td>￥100</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-inverse-info btn-rounded" style="width: 30px;height: 30px;" data-toggle="modal" data-target="#look_supplier">
-                                            <i class="mdi mdi-magnify"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            删除商品
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            修改商品
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>10001</td>
-                                    <td>后视镜</td>
-                                    <td>配件</td>
-                                    <td>￥200</td>
-                                    <td>￥300</td>
-                                    <td>￥100</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-inverse-info btn-rounded" style="width: 30px;height: 30px;" data-toggle="modal" data-target="#look_supplier">
-                                            <i class="mdi mdi-magnify"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            删除商品
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">
-                                            <i class="mdi mdi-bitbucket"></i>
-                                            修改商品
-                                        </button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <form id="from-deletes">
+                                <table class="table table-hover table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" class="check-all">
+                                            全选
+                                        </th>
+                                        <th>商品编号</th>
+                                        <th>商品名称</th>
+                                        <th>商品类型</th>
+                                        <th>进货价格</th>
+                                        <th>出售价格</th>
+                                        <th>维修价格</th>
+                                        <th>供应商</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tab1">
+                                    </tbody>
+                                </table>
+                            </form>
                             <div id="comment_page" align="right" style="padding:10px 0px"></div>
                         </div>
                     </div>
@@ -224,33 +70,30 @@
             <div class="modal-body">
                 <div class="card">
                     <div class="card-body">
-                        <form class="forms-sample">
+                        <form class="forms-sample" id="from_add">
                             <div class="form-group">
                                 <label>商品名称</label>
-                                <input type="text" class="form-control" placeholder="商品名称">
+                                <input type="text" class="form-control" placeholder="商品名称" name="gname" id="add_gname">
                             </div>
                             <div class="form-group">
                                 <label>商品类型</label>
-                                <select class="form-control">
-                                    <option>配件</option>
-                                    <option>内饰</option>
-                                </select>
+                                <input type="text" class="form-control" placeholder="商品类型" name="type" id="addtype">
                             </div>
                             <div class="form-group">
                                 <label>进货价格</label>
-                                <input type="text" class="form-control" placeholder="进货价格">
+                                <input type="text" class="form-control" placeholder="进货价格" name="buyPrice" id="add_buyPrice">
                             </div>
                             <div class="form-group">
                                 <label>出售价格</label>
-                                <input type="text" class="form-control" placeholder="出售价格">
+                                <input type="text" class="form-control" placeholder="出售价格" name="sellPrice" id="add_sellPrice">
                             </div>
                             <div class="form-group">
                                 <label>维修价格</label>
-                                <input type="text" class="form-control" placeholder="维修价格">
+                                <input type="text" class="form-control" placeholder="维修价格" name="repairPrice" id="add_repairPrice">
                             </div>
                             <div class="form-group">
                                 <label>供应商</label>
-                                <select class="form-control">
+                                <select class="form-control" name="sid" id="add_sid">
                                     <option>供应商1</option>
                                     <option>供应商2</option>
                                 </select>
@@ -261,7 +104,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">添加</button>
+                <button type="button" class="btn btn-primary" id="finish_add_btn">添加</button>
             </div>
         </div>
     </div>
@@ -277,37 +120,34 @@
             <div class="modal-body">
                 <div class="card">
                     <div class="card-body">
-                        <form class="forms-sample">
+                        <form class="forms-sample" id="from_update">
                             <div class="form-group">
                                 <label>商品编号</label>
-                                <input type="text" class="form-control" placeholder="商品编号" value="1001" readonly>
+                                <input type="text" class="form-control" placeholder="商品编号" name="gid" id="update_gid" readonly>
                             </div>
                             <div class="form-group">
                                 <label>商品名称</label>
-                                <input type="text" class="form-control" placeholder="商品名称">
+                                <input type="text" class="form-control" placeholder="商品名称" name="gname" id="update_gname">
                             </div>
                             <div class="form-group">
                                 <label>商品类型</label>
-                                <select class="form-control">
-                                    <option>配件</option>
-                                    <option>内饰</option>
-                                </select>
+                                <input type="text" class="form-control" placeholder="商品类型" name="type" id="update_type">
                             </div>
                             <div class="form-group">
                                 <label>进货价格</label>
-                                <input type="text" class="form-control" placeholder="进货价格">
+                                <input type="text" class="form-control" placeholder="进货价格" name="buyPrice" id="update_buyPirce">
                             </div>
                             <div class="form-group">
                                 <label>出售价格</label>
-                                <input type="text" class="form-control" placeholder="出售价格">
+                                <input type="text" class="form-control" placeholder="出售价格" name="sellPrice" id="update_sellPirce">
                             </div>
                             <div class="form-group">
                                 <label>维修价格</label>
-                                <input type="text" class="form-control" placeholder="维修价格">
+                                <input type="text" class="form-control" placeholder="维修价格" name="repairPrice" id="update_repairPirce">
                             </div>
                             <div class="form-group">
                                 <label>供应商</label>
-                                <select class="form-control">
+                                <select class="form-control" name="sid" id="update_sid">
                                     <option>供应商1</option>
                                     <option>供应商2</option>
                                 </select>
@@ -318,7 +158,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">修改</button>
+                <button type="button" class="btn btn-primary" id="finish_update_btn">修改</button>
             </div>
         </div>
     </div>
@@ -336,13 +176,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">删除</button>
+                <button type="button" class="btn btn-primary" id="finish_delete_btn">删除</button>
             </div>
         </div>
     </div>
 </div>
-<!-- 查看商品类型模态框 -->
-<div class="modal fade bs-example-modal-sm" id="look_supplier" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<!-- 查看供应商模态框 -->
+<div class="modal fade bs-example-modal-sm" id="find_supplier" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -354,19 +194,19 @@
                     <div class="card-body">
                         <div class="form-group">
                             <b>供应商编号：</b>
-                            <span>1010</span>
+                            <span id="find_sid">1010</span>
                         </div>
                         <div class="form-group">
                             <b>供应商名称：</b>
-                            <span>XX有限公司</span>
+                            <span id="find_sname">XX有限公司</span>
                         </div>
                         <div class="form-group">
                             <b>供应商电话：</b>
-                            <span>13727074222</span>
+                            <span id="find_tel">13727074222</span>
                         </div>
                         <div class="form-group">
                             <b>供应商地址：</b><br>
-                            <span>广东省珠海市斗门区白蕉镇南方IT学院</span>
+                            <span id="find_address">广东省珠海市斗门区白蕉镇南方IT学院</span>
                         </div>
                     </div>
                 </div>
@@ -378,13 +218,112 @@
         </div>
     </div>
 </div>
+<!-- 删除商品模态框 -->
+<div class="modal fade bs-example-modal-sm" id="super_delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">删除商品</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <h4>你确定要删除吗？</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="finish_deletes_btn">删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.pagination.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script>
-    function search(province) {
-        province = $('#search-txt').val();
+    var gid;
+    var sid;
+    var b = false;
+    $(function () {
+        init();
+        clearAdd();
+        $('#finish_update_btn').on('click',function () {
+            $.ajax({
+                url : 'update_goods',
+                method : 'post',
+                data : $('#from_update').serialize(),
+                success : function (result) {
+                    alert(result.message);
+                    if(result.code == 200){
+                        init();
+                    }
+                }
+            });
+        });
+        $('#finish_delete_btn').on('click',function () {
+            $.ajax({
+                url : 'delete_goods',
+                method : 'post',
+                data : "gid=" + gid,
+                success : function (result) {
+                    alert(result.message);
+                    if(result.code == 200){
+                        init();
+                    }
+                }
+            });
+        });
+        $('#finish_deletes_btn').on('click',function () {
+            $.ajax({
+                url : 'delete_goods',
+                method : 'post',
+                data : $('#from-deletes').serialize(),
+                success : function (result) {
+                    alert(result.message);
+                    if(result.code == 200){
+                        init();
+                    }
+                }
+            });
+        });
+        $('#finish_add_btn').on('click',function () {
+            $.ajax({
+                url : 'add_goods',
+                method : 'post',
+                data : $('#from_add').serialize(),
+                success : function (result) {
+                    alert(result.message);
+                    if(result.code == 200){
+                        init();
+                        clearAdd();
+                        $('#deletes').attr("class", "btn btn-secondary");
+                        $('#deletes').attr("data-target", "");
+                        b = false;
+                    }
+                }
+            });
+        });
+        $('.check-all').on('click', function () {
+            if($(this).attr('checked')){
+                $(this).attr('checked',false);
+                $('.check-one').attr({'checked': false});
+                $('.check-one').prop({'checked': false});
+                $('#deletes').attr("class", "btn btn-secondary");
+                $('#deletes').attr("data-target", "");
+                b = false;
+            }else{
+                $(this).attr('checked',true)
+                $('.check-one').attr({'checked': true});
+                $('.check-one').prop({'checked': true});
+                $('#deletes').attr("class", "btn btn-warning text-white");
+                $('#deletes').attr("data-target", "#super_delete");
+                b = true;
+            }
+        });
+    });
+    function init() {
         $.ajax({
-            url : 'list_city',
+            url : 'list_goods',
             method : 'get',
-            data: 'pageNum=0&pageSize=10',
+            data: 'pageNum=0&pageSize=6',
             success : function (result) {
                 addTable(result.data.list);
                 $('#comment_page').pagination(result.data.total, { //第一个参数指定共多少条记录
@@ -396,11 +335,16 @@
                     callback: function (pageNum) {//定义一个回调函数，用于每次点击页码发起分页查询请求
                         pageNum = ++pageNum;
                         $.ajax({
-                            url: 'list_city',
+                            url: 'list_goods',
                             method: 'get',
-                            data: 'pageNum=' + pageNum + '&pageSize=' + result.data.pageSize + '&province=' + province,
+                            data: 'pageNum=' + pageNum + '&pageSize=' + result.data.pageSize,
                             success: function (vo) {
                                 if(vo.code == 200){
+                                    $('.check-all').attr({'checked': false})
+                                    $('.check-all').prop({'checked': false})
+                                    $('#deletes').attr("class", "btn btn-secondary");
+                                    $('#deletes').attr("data-target", "");
+                                    b = false;
                                     addTable(vo.data.list);
                                 }else {
                                     alert("数据库连接失败");
@@ -413,17 +357,128 @@
         });
     }
 
+    function clearUpdate(){
+        $('#update_gid').val("");
+        $('#update_gname').val("");
+        $('#update_type').val("");
+        $('#update_buyPirce').val("");
+        $('#update_sellPirce').val("");
+        $('#update_repairPirce').val("");
+        $.ajax({
+            url : 'get_all_supplier',
+            method : 'get',
+            success : function (result) {
+                $('#update_sid').empty();
+                $.each(result.data, function (index,obj) {
+                    $('#update_sid').append('<option value="' + obj.sid + '">' + obj.sname + '</option>');
+                });
+            }
+        });
+    }
+    function clearAdd() {
+        $('#add_gname').val("");
+        $('#add_type').val("");
+        $('#add_buyPirce').val("");
+        $('#add_sellPirce').val("");
+        $('#add_repairPirce').val("");
+        $.ajax({
+            url : 'get_all_supplier',
+            method : 'get',
+            success : function (result) {
+                $('#add_sid').empty();
+                $.each(result.data, function (index,obj) {
+                    $('#add_sid').append('<option value="' + obj.sid + '">' + obj.sname + '</option>');
+                });
+            }
+        });
+    }
+    function loadUpdate(data) {
+        $('#update_gid').val(data.gid);
+        $('#update_gname').val(data.gname);
+        $('#update_type').val(data.type);
+        $('#update_buyPirce').val(data.buyPrice);
+        $('#update_sellPirce').val(data.sellPrice);
+        $('#update_repairPirce').val(data.repairPrice);
+        $('#update_sid').val(data.sid);
+    }
+
     function addTable(data) {
-        $('#t1').empty();
+        $('#tab1').empty();
         $.each(data, function (index,obj) {
-            $('#t1').append(
+            $('#tab1').append(
                 '<tr>' +
-                '<td>' + obj.cityId + '</td>' +
-                '<td>' + obj.cityName + '</td>' +
-                '<td>' + obj.cityCode + '</td>' +
-                '<td>' + obj.province + '</td>' +
+                '<td>' +
+                '<input type="checkbox" name="gid" class="check-one" value="' + obj.gid + '">' +
+                '</td>' +
+                '<td>' + obj.gid + '</td>' +
+                '<td>' + obj.gname +'</td>' +
+                '<td>' + obj.type + '</td>' +
+                '<td>￥' + obj.buyPrice + '</td>' +
+                '<td>￥' + obj.sellPrice + '</td>' +
+                '<td>￥' + obj.repairPrice + '</td>' +
+                '<td>' +
+                '<button type="button" class="btn btn-icon btn-inverse-info btn-rounded find_data_btn" style="width: 30px;height: 30px;" data-toggle="modal" data-target="#find_supplier">' +
+                '<i class="mdi mdi-magnify"></i>' +
+                '</button>' +
+                '<input type="hidden" value="' + obj.sid + '">' +
+                '</td>' +
+                '<td>' +
+                '<button type="button" class="btn btn-danger btn-sm delete-btn" data-toggle="modal" data-target="#delete">' +
+                '<i class="mdi mdi-bitbucket"></i>' +
+                '删除商品' +
+                '</button>' +
+                '<button type="button" class="btn btn-success btn-sm update-btn" data-toggle="modal" data-target="#update">' +
+                '<i class="mdi mdi-bitbucket"></i>' +
+                '修改商品' +
+                '</button>' +
+                '<input type="hidden" value="' + obj.gid + '">' +
+                '</td>' +
                 '</tr>'
             );
+        });
+        $('.update-btn').on('click',function (){
+            gid = $(this).next().val();
+            clearUpdate();
+            $.ajax({
+                url : 'get_goods',
+                method : 'get',
+                data : 'gid=' + gid,
+                success : function (result) {
+                    loadUpdate(result.data);
+                }
+            });
+        });
+        $('.find_data_btn').on('click',function (){
+            sid = $(this).next().val();
+            $.ajax({
+                url : 'get_supplier',
+                method : 'get',
+                data : 'sid=' + sid,
+                success : function(result) {
+                    $('#find_sid').text(result.data.sid);
+                    $('#find_sname').text(result.data.sname);
+                    $('#find_tel').text(result.data.tel);
+                    $('#find_address').text(result.data.address);
+                }
+            });
+        });
+        $('.delete-btn').on('click',function (){
+            gid = $(this).next().next().val();
+        });
+        $('.check-one').on('click', function() {
+            if(!$(this).prop('checked')){
+                $('.check-all').attr({'checked': false});
+                $('.check-all').prop({'checked': false});
+            }
+            if($("input[type='checkbox']:checked").length >= 1){
+                $('#deletes').attr("data-target", "#super_delete");
+                $('#deletes').attr("class", "btn btn-warning text-white");
+                b = true;
+            }else{
+                $('#deletes').attr("data-target", "");
+                $('#deletes').attr("class", "btn btn-secondary");
+                b = false;
+            }
         });
     }
 </script>

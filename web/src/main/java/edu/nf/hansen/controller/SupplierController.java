@@ -27,6 +27,11 @@ public class SupplierController extends BaseController {
         return success(service.listSupplier(pageNum, pageSize));
     }
 
+    @GetMapping("/get_all_supplier")
+    public ResponseVO<List<Supplier>> listSupplier(){
+        return success(service.listSupplier());
+    }
+
     @GetMapping("/get_supplier")
     public ResponseVO getSupplierById(String sid){
         return success(service.getSupplierById(sid));

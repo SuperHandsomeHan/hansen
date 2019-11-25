@@ -111,7 +111,7 @@
             <div class="card-body">
                 <h4 class="card-title">正在进行中的订单。。。</h4>
                 <div style="text-align: right; margin-bottom: 20px;">
-                    <button class="btn btn-primary btn-sm">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add-modal">
                         录入
                     </button>
                 </div>
@@ -120,93 +120,16 @@
                         <thead>
                         <tr>
                             <th>客户名称</th>
-                            <th>车牌号</th>
-                            <th>维修部分</th>
+                            <th>手机号</th>
+                            <th>备注</th>
                             <th>维修人员</th>
                             <th>订单金额</th>
-                            <th>押金</th>
                             <th>接单时间</th>
                             <th>状态</th>
                             <th>操作</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>李顺</td>
-                            <td>粤CHA999</td>
-                            <td>前铲</td>
-                            <td>李本伟</td>
-                            <td>￥2000</td>
-                            <td>￥500</td>
-                            <td>2019.11.21</td>
-                            <td><label class="badge badge-danger">排队中</label></td>
-                            <td>
-                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateStatu">
-                                    修改
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>李杰峰</td>
-                            <td>粤CHA262</td>
-                            <td>内饰</td>
-                            <td>李本伟</td>
-                            <td>￥4500</td>
-                            <td>￥1200</td>
-                            <td>2019.11.21</td>
-                            <td><label class="badge badge-warning" style="color: white;">进行中</label></td>
-                            <td>
-                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateStatu">
-                                    修改
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>付金鑫</td>
-                            <td>粤CHA329</td>
-                            <td>前包围</td>
-                            <td>李本伟</td>
-                            <td>￥5230</td>
-                            <td>￥1500</td>
-                            <td>2019.11.19</td>
-                            <td><label class="badge badge-info">检查中</label></td>
-                            <td>
-                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateStatu">
-                                    修改
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>刘杰</td>
-                            <td>粤CHA339</td>
-                            <td>侧门</td>
-                            <td>李本伟</td>
-                            <td>￥1000</td>
-                            <td>￥200</td>
-                            <td>2019.11.18</td>
-                            <td><label class="badge badge-success">已完成</label></td>
-                            <td>
-                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateStatu">
-                                    修改
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>马乐言</td>
-                            <td>粤CHA322</td>
-                            <td>后视镜</td>
-                            <td>李本伟</td>
-                            <td>￥3000</td>
-                            <td>￥7  00</td>
-                            <td>2019.11.18</td>
-                            <td><label class="badge badge-dark">已结束</label></td>
-                            <td>
-                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateStatu">
-                                    修改
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
+                        <tbody id="tab1"></tbody>
                     </table>
                     <div id="comment_page" align="right" style="padding:10px 0px"></div>
                 </div>
@@ -236,33 +159,227 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <select class="form-control">
-                    <option selected>
-                        <label>进行中</label>
-                    </option>
-                    <option>
-                        <label>排队中</label>
-                    </option>
-                    <option>
-                        <label>检查中</label>
-                    </option>
-                    <option>
-                        <label>已完成</label>
-                    </option>
-                    <option>
-                        <label>已结束</label>
-                    </option>
-                </select>
+                <form id="from_update">
+                    <input type="hidden" name="rid" id="update_rid">
+                    <select class="form-control" name="status" id="update_type">
+                        <option value="进行中" selected>
+                            进行中
+                        </option>
+                        <option value="排队中">
+                            排队中
+                        </option>
+                        <option value="检查中">
+                            检查中
+                        </option>
+                        <option value="已完成">
+                            已完成
+                        </option>
+                        <option value="已结束">
+                            已结束
+                        </option>
+                    </select>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">修改</button>
+                <button type="button" class="btn btn-primary" id="finish_update_btn">修改</button>
             </div>
         </div>
     </div>
 </div>
+<div class="modal fade bs-example-modal-sm" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">订单录入</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form class="forms-samplec" id="from_add">
+                    <div class="form-group">
+                        <label>备注</label>
+                        <input type="text" class="form-control" placeholder="备注" name="remarks" id="add_remark">
+                    </div>
+                    <div class="form-group">
+                        <label>维修人员</label>
+                        <select id="add_uid" name="uid">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>客户名称</label>
+                        <input type="text" class="form-control" placeholder="客户名称" name="carUserName" id="add_carUserName">
+                    </div>
+                    <div class="form-group">
+                        <label>客户电话</label>
+                        <input type="text" class="form-control" placeholder="客户电话" name="carUserTel" id="add_tel">
+                    </div>
+                    <div class="form-group">
+                        <label>维修价格</label>
+                        <input type="text" class="form-control" placeholder="维修价格" name="price" id="add_price">
+                    </div>
+                    <div class="form-group">
+                        <label>选中商品</label>
+                        <select id="add_goods" name="gid">
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="finish_add_btn">添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.pagination.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script>
+    var rid;
+    var className;
     $(function () {
-       $('#uname').text($('#user_name').text());
+        init();
+        $('#finish_update_btn').on('click',function () {
+            $.ajax({
+                url : 'update_repairInfo',
+                method : 'post',
+                data : $('#from_update').serialize() ,
+                success : function (result) {
+                    alert(result.message);
+                    if(result.code == 200){
+                        init();
+                    }
+                }
+            });
+        });
+        $('#finish_add_btn').on('click',function () {
+            $.ajax({
+                url : 'add_repairInfo',
+                method : 'post',
+                data : $('#from_add').serialize(),
+                success : function (result) {
+                    alert(result.message);
+                    if(result.code == 200){
+                        init();
+                        clearAdd();
+                    }
+                }
+            });
+        });
     });
+    function getClassName(name) {
+        if(name == "进行中"){
+            className = ' class="badge badge-warning" style="color: white;"';
+        }else if(name == "排队中"){
+            className = ' class="badge badge-danger"';
+        }else if(name == "检查中"){
+            className = ' class="badge badge-info"';
+        }else if(name == "已完成"){
+            className = ' class="badge badge-success"';
+        }else if(name == "已结束"){
+            className = ' class="badge badge-dark"';
+        }
+    }
+    function init() {
+        clearAdd();
+        $.ajax({
+            url : 'list_repairInfo',
+            method : 'get',
+            data: 'pageNum=0&pageSize=5',
+            success : function (result) {
+                addTable(result.data.list);
+                $('#comment_page').pagination(result.data.total, { //第一个参数指定共多少条记录
+                    items_per_page: result.data.pageSize, // 每页显示多少条记录
+                    next_text: '下一页', //下一页按钮图标
+                    prev_text: '上一页', //上一页按钮图标
+                    num_display_entries: 5,//主体页数
+                    num_edge_entries: 2, //边缘页数
+                    callback: function (pageNum) {//定义一个回调函数，用于每次点击页码发起分页查询请求
+                        pageNum = ++pageNum;
+                        $.ajax({
+                            url: 'list_repairInfo',
+                            method: 'get',
+                            data: 'pageNum=' + pageNum + '&pageSize=' + result.data.pageSize,
+                            success: function (vo) {
+                                if(vo.code == 200){
+                                    addTable(vo.data.list);
+                                }else {
+                                    alert("数据库连接失败");
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    function clearUpdate(){
+        $('#update_type').val("进行中");
+    }
+    function loadUpdate(data) {
+        $('#update_type').val(data.status);
+        $('#update_rid').val(data.rid);
+    }
+    function clearAdd(){
+        $('#add_remark').val("");
+        $('#add_tel').val("");
+        $('#add_price').val("");
+        $('#add_carUserName').val("");
+        $.ajax({
+            url : 'get_all_user',
+            method : 'get',
+            success : function (result) {
+                $('#add_uid').empty();
+                $.each(result.data, function (index,obj) {
+                    $('#add_uid').append('<option value="' + obj.uid + '">' + obj.userName + '</option>');
+                });
+            }
+        });
+        $.ajax({
+            url : 'get_all_goods',
+            method : 'get',
+            success : function (result) {
+                $('#add_goods').empty();
+                $.each(result.data, function (index,obj) {
+                    $('#add_goods').append('<option value="' + obj.gid + '">' + obj.gname + '</option>');
+                });
+            }
+        });
+    }
+
+    function addTable(data) {
+        $('#tab1').empty();
+        $.each(data, function (index,obj) {
+            getClassName(obj.status);
+            $('#tab1').append(
+                '<tr>' +
+                '<td>' + obj.carUserName + '</td>' +
+                '<td>' + obj.carUserTel + '</td>' +
+                '<td>' + obj.remarks + '</td>' +
+                '<td>' + obj.user.userName + '</td>' +
+                '<td>￥' + obj.price + '</td>' +
+                '<td>' + obj.rtime + '</td>' +
+                '<td><label' + className + '>' + obj.status + '</label></td>' +
+                '<td>' +
+                '<button type="button" class="btn btn-primary btn-sm update-btn" data-toggle="modal" data-target="#updateStatu">' +
+                '修改' +
+                '</button>' +
+                '<input type="hidden" value="' + obj.rid + '">' +
+                '</td>' +
+                '</tr>'
+            );
+            $('.update-btn').on('click',function (){
+                rid = $(this).next().val();
+                clearUpdate();
+                $.ajax({
+                    url : 'get_repairInfo',
+                    method : 'get',
+                    data : 'rid=' + rid,
+                    success : function (result) {
+                        loadUpdate(result.data);
+                    }
+                });
+            });
+        });
+    }
 </script>

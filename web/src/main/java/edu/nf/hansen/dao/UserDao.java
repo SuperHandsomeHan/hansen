@@ -13,6 +13,8 @@ public interface UserDao {
 
     List<Users> listUser(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
+    List<Users> listUser();
+
     Users getUserById(String uid);
 
     Users getUserByTel(String tel);

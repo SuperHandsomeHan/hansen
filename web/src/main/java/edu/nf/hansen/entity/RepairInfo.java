@@ -1,5 +1,8 @@
 package edu.nf.hansen.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -8,21 +11,23 @@ import java.util.Date;
  * @date 2019/11/18
  */
 public class RepairInfo {
-    private String rId;
+    private String rid;
     private String remarks;
-    private Users user;
     private String carUserName;
     private String carUserTel;
+    @JsonFormat(timezone="GMT+8", pattern="yyyy-MM-dd")
     private Date rtime;
-    private Goods goods;
     private BigDecimal price;
+    private String status;
+    private Users user;
+    private Goods goods;
 
-    public String getrId() {
-        return rId;
+    public String getRid() {
+        return rid;
     }
 
-    public void setrId(String rId) {
-        this.rId = rId;
+    public void setRid(String rid) {
+        this.rid = rid;
     }
 
     public String getRemarks() {
@@ -79,5 +84,13 @@ public class RepairInfo {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

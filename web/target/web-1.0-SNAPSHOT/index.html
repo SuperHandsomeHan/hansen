@@ -274,7 +274,6 @@
   <script src="js/dashboard.js"></script>
   <script src="js/data-table.js"></script>
   <script src="js/jquery.dataTables.js"></script>
-  <script src="js/dataTables.bootstrap4.js"></script>
   <!-- page -->
 <!--  <script src="js/jquery.pagination.js"></script>-->
   <!-- End custom js for this page-->
@@ -316,24 +315,38 @@
 
     $(function () {
       $('#people-btn').on('click',function () {
+        $('#content-wrapper').empty();
+        init();
         $('#content-wrapper').load('people.html');
       });
       $('#goods-btn').on('click',function () {
+        $('#content-wrapper').empty();
+        init();
         $('#content-wrapper').load('goods.html');
       });
       $('#supplier-btn').on('click',function () {
+        $('#content-wrapper').empty();
+        init();
         $('#content-wrapper').load('supplier.html');
       });
       $('#user_list').on('click',function () {
+        $('#content-wrapper').empty();
+        init();
         $('#content-wrapper').load('user.html');
       });
       $('#grade_info').on('click',function () {
-          $('#content-wrapper').load('grade.html');
+        $('#content-wrapper').empty();
+        init();
+        $('#content-wrapper').load('grade.html');
       });
       $('#sign_out').on('click',function () {
+        $('#content-wrapper').empty();
+        init();
         location.href = "login.html";
       });
       $('#boss_btn').on('click',function () {
+        $('#content-wrapper').empty();
+        init();
         $('#content-wrapper').load('boss.html');
       });
     });

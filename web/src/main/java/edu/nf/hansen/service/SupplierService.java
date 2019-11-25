@@ -13,6 +13,8 @@ import java.util.List;
 public interface SupplierService {
     PageInfo<List<Supplier>> listSupplier(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
+    List<Supplier> listSupplier();
+
     Supplier getSupplierById(String sid);
 
     Supplier getSupplierByName(String sname);

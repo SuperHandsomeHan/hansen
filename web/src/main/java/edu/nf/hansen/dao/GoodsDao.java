@@ -12,7 +12,9 @@ import java.util.List;
  * @date 2019/11/22
  */
 public interface GoodsDao {
-    PageInfo<List<Goods>> listGoods(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+    List<Goods> listGoods(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+
+    List<Goods> listGoods();
 
     Goods getGoodsById(String gid);
 

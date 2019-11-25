@@ -29,6 +29,15 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
+    public List<Supplier> listSupplier() {
+        try{
+            return dao.listSupplier();
+        }catch (Exception e){
+            throw new SupplierException("服务器异常");
+        }
+    }
+
+    @Override
     public Supplier getSupplierById(String sid) {
         try{
             return dao.getSupplierById(sid);

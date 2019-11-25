@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface UserListService {
     PageInfo<List<Users>> listUser(Integer pageNum, Integer pageSize);
+
+    List<Users> listUser();
 }

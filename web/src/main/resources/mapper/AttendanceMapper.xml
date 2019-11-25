@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.hansen.dao.AttendanceDao">
+    <resultMap id="attendanceMap" type="attendance">
+        <id property="attendanceId" column="attendance_id"/>
+        <result property="attendanceType" column="attendance_type"/>
+        <result property="attendanceDate" column="attendance_date"/>
+        <association property="user" resultMap="userMap"/>
+    </resultMap>
+    <resultMap id="userMap" type="users">
+        <id property="uid" column="u_id"/>
+        <result property="userName" column="u_name"/>
+        <result property="tel" column="u_tel"/>
+    </resultMap>
+
+    <select id="listAttendance" resultMap="attendanceMap">
+        select u.u_id, u.u_name, u.u_tel, a.attendance_id, a.attendance_date, a.attendance_type
+        from attendance_info a right join user_info u on u.u_id = a.attendance_user
+        where date(a.attendance_date) = curdate()
+    </select>
+    
+    <select id="listAttendanceByDate" resultMap="attendanceMap" parameterType="java.lang.String">
+        select u.u_id, u.u_name, u.u_tel, a.attendance_id, a.attendance_date, a.attendance_type
+        from attendance_info a right join user_info u on u.u_id = a.attendance_user
+        where a.attendance_date like #{date}"%"
+    </select>
+
+    <insert id="AddAttendance" parameterType="list">
+        insert into attendance_info(attendance_id ,attendance_user, attendance_type, attendance_date) values
+        <foreach collection="list" item="attendance" separator=",">
+            (#{attendance.attendanceId}, #{attendance.user.uid}, #{attendance.attendanceType}, #{attendance.attendanceDate}).
+        </foreach>
+    </insert>
+
+    <update id="UpdateAttendance" parameterType="list">
+        <foreach collection="list" item="attendance" separator=";">
+            update attendance_info
+            <set>
+                attendance_type = #{attendance.attendanceType}
+            </set>
+            <where>
+                attendance_id = #{attendance.attendanceId} and attendance_date like #{attendance.attendanceDate}"%"
+            </where>
+        </foreach>
+    </update>
+
+    <update id="UpdateAttendanceById" parameterType="attendance">
+        update attendance_info where attendance_type = #{attendance.attendanceType} and date(a.attendance_date) = curdate()
+    </update>
+
+</mapper>

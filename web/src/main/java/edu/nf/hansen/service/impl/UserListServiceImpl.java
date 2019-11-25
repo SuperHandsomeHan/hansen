@@ -32,4 +32,17 @@ public class UserListServiceImpl implements UserListService {
             throw new UserInfoException("服务器异常错误");
         }
     }
+
+    @Override
+    public List<Users> listUser() {
+        try {
+            List<Users> list = dao.listUser();
+            if(list == null){
+                throw new UserInfoException("服务器没有用户数据");
+            }
+            return list;
+        }catch (Exception e){
+            throw new UserInfoException("服务器异常错误");
+        }
+    }
 }

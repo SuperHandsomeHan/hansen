@@ -8,10 +8,9 @@ import java.util.Date;
  */
 public class Attendance {
     private String attendanceId;
-    private Users user;
     private String attendanceType;
-    private String remarks;
     private Date attendanceDate;
+    private Users user;
 
     public String getAttendanceId() {
         return attendanceId;
@@ -35,14 +34,6 @@ public class Attendance {
 
     public void setAttendanceType(String attendanceType) {
         this.attendanceType = attendanceType;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
     }
 
     public Date getAttendanceDate() {

@@ -1,10 +1,7 @@
 package edu.nf.hansen.controller.advice;
 
 import edu.nf.hansen.controller.vo.ResponseVO;
-import edu.nf.hansen.service.exception.LevelException;
-import edu.nf.hansen.service.exception.LoginException;
-import edu.nf.hansen.service.exception.SupplierException;
-import edu.nf.hansen.service.exception.UserInfoException;
+import edu.nf.hansen.service.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -47,6 +44,24 @@ public class ControllerAspect {
     @ExceptionHandler(SupplierException.class)
     @ResponseBody
     public ResponseVO supplierException(SupplierException e){
+        ResponseVO vo = new ResponseVO();
+        vo.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        vo.setMessage(e.getMessage());
+        return vo;
+    }
+
+    @ExceptionHandler(GoodsException.class)
+    @ResponseBody
+    public ResponseVO goodsException(GoodsException e){
+        ResponseVO vo = new ResponseVO();
+        vo.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        vo.setMessage(e.getMessage());
+        return vo;
+    }
+
+    @ExceptionHandler(RepairInfoException.class)
+    @ResponseBody
+    public ResponseVO repairInfoException(RepairInfoException e){
         ResponseVO vo = new ResponseVO();
         vo.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
         vo.setMessage(e.getMessage());

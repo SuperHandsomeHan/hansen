@@ -246,11 +246,6 @@
                 b = true;
             }
         });
-        $('#deletes').on('click', function () {
-            if(b){
-                //$('#super_delete').modal('show');
-            }
-        });
     });
     function init() {
         $.ajax({
@@ -304,8 +299,8 @@
     }
     function clearAdd(){
         $('#add_sname').val("");
-        $('#add').val("");
-        $('#add').val("");
+        $('#add_tel').val("");
+        $('#add_address').val("");
     }
 
     function addTable(data) {
