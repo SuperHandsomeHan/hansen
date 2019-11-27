@@ -116,140 +116,37 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">出勤情况</h4>
-                                        <div style="margin-bottom: 20px;" class="row">
-                                            <div style="text-align: left;" class="col-6">
-                                                <input class="form-control" type="date" value="2015-09-24"/>
+                                        <form id="from_find">
+                                            <div style="margin-bottom: 20px;" class="row">
+                                                <div style="text-align: left;" class="col-6">
+                                                    <input class="form-control" type="date" name="attendanceDate" id="btn-attendanceDate"/>
+                                                </div>
+                                                <div style="text-align: left;" class="col-2">
+                                                    <button type="button" id="btn-find" class="btn btn-primary">
+                                                        查找
+                                                    </button>
+                                                </div>
+                                                <div style="text-align: right;"class="col-4">
+                                                    <button type="button" class="btn btn-primary" id="btn-update">
+                                                        保存
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div style="text-align: left;" class="col-2">
-                                                <button class="btn btn-primary">
-                                                    查找
-                                                </button>
-                                            </div>
-                                            <div style="text-align: right;"class="col-4">
-                                                <button class="btn btn-primary">
-                                                    保存
-                                                </button>
-                                            </div>
-                                        </div>
+                                        </form>
                                         <div class="table-responsive">
-                                            <table class="table table-hover table-striped table-bordered">
-                                                <thead>
-                                                <tr>
-                                                    <th>员工名称</th>
-                                                    <th>员工手机号</th>
-                                                    <th>打卡时间</th>
-                                                    <th>状态</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>李顺</td>
-                                                    <td>13727074222</td>
-                                                    <td>2019.11.15 14:52:00</td>
-                                                    <td>
-                                                        <select class="form-control">
-                                                            <option selected>
-                                                                <label>缺勤</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>迟到</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>正常</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>请假</label>
-                                                            </option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>李杰峰</td>
-                                                    <td>13727073222</td>
-                                                    <td>2019.11.15 14:52:00</td>
-                                                    <td>
-                                                        <select class="form-control">
-                                                            <option>
-                                                                <label>缺勤</label>
-                                                            </option>
-                                                            <option selected>
-                                                                <label>迟到</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>正常</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>请假</label>
-                                                            </option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>付金鑫</td>
-                                                    <td>13727072222</td>
-                                                    <td>2019.11.15 14:52:00</td>
-                                                    <td>
-                                                        <select class="form-control">
-                                                            <option>
-                                                                <label>缺勤</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>迟到</label>
-                                                            </option>
-                                                            <option selected>
-                                                                <label>正常</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>请假</label>
-                                                            </option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>刘杰</td>
-                                                    <td>13727072222</td>
-                                                    <td>2019.11.15 14:52:00</td>
-                                                    <td>
-                                                        <select class="form-control">
-                                                            <option>
-                                                                <label>缺勤</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>迟到</label>
-                                                            </option>
-                                                            <option selected>
-                                                                <label>正常</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>请假</label>
-                                                            </option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>马乐言</td>
-                                                    <td>13727071222</td>
-                                                    <td>2019.11.15 14:52:00</td>
-                                                    <td>
-                                                        <select class="form-control">
-                                                            <option>
-                                                                <label>缺勤</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>迟到</label>
-                                                            </option>
-                                                            <option>
-                                                                <label>正常</label>
-                                                            </option>
-                                                            <option selected>
-                                                                <label>请假</label>
-                                                            </option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <div id="comment_page" align="right" style="padding:10px 0px"></div>
+                                            <form id="from_update">
+                                                <table class="table table-hover table-striped table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>员工名称</th>
+                                                        <th>员工手机号</th>
+                                                        <th>打卡时间</th>
+                                                        <th>状态</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tab1"></tbody>
+                                                </table>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -262,51 +159,80 @@
     </div>
 </div>
 <script>
-    function search(province) {
-        province = $('#search-txt').val();
-        $.ajax({
-            url : 'list_city',
-            method : 'get',
-            data: 'pageNum=0&pageSize=10',
-            success : function (result) {
-                addTable(result.data.list);
-                $('#comment_page').pagination(result.data.total, { //第一个参数指定共多少条记录
-                    items_per_page: result.data.pageSize, // 每页显示多少条记录
-                    next_text: '下一页', //下一页按钮图标
-                    prev_text: '上一页', //上一页按钮图标
-                    num_display_entries: 5,//主体页数
-                    num_edge_entries: 2, //边缘页数
-                    callback: function (pageNum) {//定义一个回调函数，用于每次点击页码发起分页查询请求
-                        pageNum = ++pageNum;
-                        $.ajax({
-                            url: 'list_city',
-                            method: 'get',
-                            data: 'pageNum=' + pageNum + '&pageSize=' + result.data.pageSize + '&province=' + province,
-                            success: function (vo) {
-                                if(vo.code == 200){
-                                    addTable(vo.data.list);
-                                }else {
-                                    alert("数据库连接失败");
-                                }
-                            }
-                        });
+    $(function () {
+        init();
+
+        $('#btn-find').on('click', function () {
+            $.ajax({
+                url : 'list_attendancebyDate',
+                method : 'get',
+                data : 'date=' + $('#btn-attendanceDate').val(),
+                success : function (result) {
+                    if(result.code == 200){
+                        addTable(result.data)
+                    }else {
+                        alert(result.message);
                     }
-                });
+                }
+            });
+        });
+        $('#btn-update').on('click', function () {
+            $.ajax({
+                url : 'update_attendance',
+                method : 'post',
+                data : $('#from_update').serialize(),
+                success : function (result) {
+                    if(result.code == 200){
+                        alert("保存成功");
+                    }else {
+                        alert(result.message);
+                    }
+                }
+            });
+        });
+    });
+    function init() {
+        $.ajax({
+           url : 'list_attendance',
+            method : 'get',
+            success : function (result) {
+                if(result.code == 200){
+                    addTable(result.data)
+                }else {
+                    alert(result.message);
+                }
             }
         });
     }
 
     function addTable(data) {
-        $('#t1').empty();
+        $('#tab1').empty();
         $.each(data, function (index,obj) {
-            $('#t1').append(
+            $('#tab1').append(
                 '<tr>' +
-                '<td>' + obj.cityId + '</td>' +
-                '<td>' + obj.cityName + '</td>' +
-                '<td>' + obj.cityCode + '</td>' +
-                '<td>' + obj.province + '</td>' +
+                '<td>' + obj.user.userName + '</td>' +
+                '<td>' + obj.user.tel + '</td>' +
+                '<td>' + obj.attendanceDate + '</td>' +
+                '<td>' +
+                '<select class="form-control" name="attendanceType" id="attendanceType' + index + '">' +
+                '<option value="缺勤">' +
+                '<label>缺勤</label>' +
+                '</option>' +
+                '<option value="迟到">' +
+                '<label>迟到</label>' +
+                '</option>' +
+                '<option value="正常">' +
+                '<label>正常</label>' +
+                '</option>' +
+                '<option value="请假">' +
+                '<label>请假</label>' +
+                '</option>' +
+                '</select>' +
+                '<input type="hidden" name="attendanceId" value="' + obj.attendanceId + '"/>' +
+                '</td>' +
                 '</tr>'
             );
+            $('#attendanceType' + index).val(obj.attendanceType);
         });
     }
 </script>

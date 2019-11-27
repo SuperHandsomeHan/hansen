@@ -67,4 +67,13 @@ public class ControllerAspect {
         vo.setMessage(e.getMessage());
         return vo;
     }
+
+    @ExceptionHandler(AttendanceException.class)
+    @ResponseBody
+    public ResponseVO attendanceException(AttendanceException e){
+        ResponseVO vo = new ResponseVO();
+        vo.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        vo.setMessage(e.getMessage());
+        return vo;
+    }
 }

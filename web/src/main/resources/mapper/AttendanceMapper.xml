@@ -19,6 +19,12 @@
         from attendance_info a right join user_info u on u.u_id = a.attendance_user
         where date(a.attendance_date) = curdate()
     </select>
+
+    <select id="getAttendanceByUid" resultMap="attendanceMap" parameterType="string">
+        select u.u_id, u.u_name, u.u_tel, a.attendance_id, a.attendance_date, a.attendance_type
+        from attendance_info a right join user_info u on u.u_id = a.attendance_user
+        where date(a.attendance_date) = curdate() and u_id = #{uid}
+    </select>
     
     <select id="listAttendanceByDate" resultMap="attendanceMap" parameterType="java.lang.String">
         select u.u_id, u.u_name, u.u_tel, a.attendance_id, a.attendance_date, a.attendance_type
@@ -26,27 +32,27 @@
         where a.attendance_date like #{date}"%"
     </select>
 
-    <insert id="AddAttendance" parameterType="list">
+    <insert id="addAttendance" parameterType="list">
         insert into attendance_info(attendance_id ,attendance_user, attendance_type, attendance_date) values
         <foreach collection="list" item="attendance" separator=",">
-            (#{attendance.attendanceId}, #{attendance.user.uid}, #{attendance.attendanceType}, #{attendance.attendanceDate}).
+            (#{attendance.attendanceId}, #{attendance.user.uid}, #{attendance.attendanceType}, #{attendance.attendanceDate})
         </foreach>
     </insert>
 
-    <update id="UpdateAttendance" parameterType="list">
+    <update id="updateAttendance" parameterType="list">
         <foreach collection="list" item="attendance" separator=";">
             update attendance_info
             <set>
                 attendance_type = #{attendance.attendanceType}
             </set>
             <where>
-                attendance_id = #{attendance.attendanceId} and attendance_date like #{attendance.attendanceDate}"%"
+                attendance_id = #{attendance.attendanceId}
             </where>
         </foreach>
     </update>
 
-    <update id="UpdateAttendanceById" parameterType="attendance">
-        update attendance_info where attendance_type = #{attendance.attendanceType} and date(a.attendance_date) = curdate()
+    <update id="updateAttendanceOne" parameterType="attendance">
+        update attendance_info set attendance_date = #{attendanceDate} where attendance_id = #{attendanceId}
     </update>
 
 </mapper>

@@ -111,7 +111,7 @@
             <div class="card-body">
                 <h4 class="card-title">正在进行中的订单。。。</h4>
                 <div style="text-align: right; margin-bottom: 20px;">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add-modal">
+                    <button type="button" class="btn btn-primary btn-sm" data-target="#add-modal" data-toggle="modal">
                         录入
                     </button>
                 </div>
@@ -159,26 +159,30 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form id="from_update">
-                    <input type="hidden" name="rid" id="update_rid">
-                    <select class="form-control" name="status" id="update_type">
-                        <option value="进行中" selected>
-                            进行中
-                        </option>
-                        <option value="排队中">
-                            排队中
-                        </option>
-                        <option value="检查中">
-                            检查中
-                        </option>
-                        <option value="已完成">
-                            已完成
-                        </option>
-                        <option value="已结束">
-                            已结束
-                        </option>
-                    </select>
-                </form>
+                <div class="card">
+                    <div class="card-body">
+                        <form class="forms-sample" id="from_update">
+                            <input type="hidden" name="rid" id="update_rid">
+                            <select class="form-control" name="status" id="update_type">
+                                <option value="进行中" selected>
+                                    进行中
+                                </option>
+                                <option value="排队中">
+                                    排队中
+                                </option>
+                                <option value="检查中">
+                                    检查中
+                                </option>
+                                <option value="已完成">
+                                    已完成
+                                </option>
+                                <option value="已结束">
+                                    已结束
+                                </option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -195,34 +199,38 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form class="forms-samplec" id="from_add">
-                    <div class="form-group">
-                        <label>备注</label>
-                        <input type="text" class="form-control" placeholder="备注" name="remarks" id="add_remark">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="forms-sample" id="from_add">
+                            <div class="form-group">
+                                <label>备注</label>
+                                <input type="text" class="form-control" placeholder="备注" name="remarks" id="add_remark">
+                            </div>
+                            <div class="form-group">
+                                <label>维修人员</label>
+                                <select id="add_uid" name="uid">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>客户名称</label>
+                                <input type="text" class="form-control" placeholder="客户名称" name="carUserName" id="add_carUserName">
+                            </div>
+                            <div class="form-group">
+                                <label>客户电话</label>
+                                <input type="text" class="form-control" placeholder="客户电话" name="carUserTel" id="add_tel">
+                            </div>
+                            <div class="form-group">
+                                <label>维修价格</label>
+                                <input type="text" class="form-control" placeholder="维修价格" name="price" id="add_price">
+                            </div>
+                            <div class="form-group">
+                                <label>选中商品</label>
+                                <select id="add_goods" name="gid">
+                                </select>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label>维修人员</label>
-                        <select id="add_uid" name="uid">
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>客户名称</label>
-                        <input type="text" class="form-control" placeholder="客户名称" name="carUserName" id="add_carUserName">
-                    </div>
-                    <div class="form-group">
-                        <label>客户电话</label>
-                        <input type="text" class="form-control" placeholder="客户电话" name="carUserTel" id="add_tel">
-                    </div>
-                    <div class="form-group">
-                        <label>维修价格</label>
-                        <input type="text" class="form-control" placeholder="维修价格" name="price" id="add_price">
-                    </div>
-                    <div class="form-group">
-                        <label>选中商品</label>
-                        <select id="add_goods" name="gid">
-                        </select>
-                    </div>
-                </form>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

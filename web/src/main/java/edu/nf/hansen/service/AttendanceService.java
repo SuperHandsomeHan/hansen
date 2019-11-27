@@ -14,9 +14,8 @@ public interface AttendanceService {
 
     List<Attendance> listAttendanceByDate(String date);
 
-    void AddAttendance(List<Attendance> list);
+    void updateAttendance(String[] attendanceId, String[] attendanceType);
 
-    void UpdateAttendance(List<Attendance> list);
+    Attendance clockIn(String uid);
 
-    void UpdateAttendanceById(Attendance attendance);
 }

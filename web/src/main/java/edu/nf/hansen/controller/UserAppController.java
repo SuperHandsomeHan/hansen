@@ -19,7 +19,7 @@ public class UserAppController extends BaseController{
     private UserAppService updateService;
 
     @PostMapping("/update_user")
-    public ResponseVO updateUser(Users user, String gradeId){
+    public ResponseVO updateUser(Users user){
         updateService.updateUserService(user);
         return success("修改成功！");
     }

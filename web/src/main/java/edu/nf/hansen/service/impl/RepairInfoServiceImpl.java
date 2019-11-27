@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,13 +25,8 @@ public class RepairInfoServiceImpl implements RepairInfoService {
     @Override
     public PageInfo<List<RepairInfo>> listRepairInfo(Integer pageNum, Integer pageSize) {
         List<RepairInfo> list = dao.listRepairInfo(pageNum, pageSize);
-        List<RepairInfo> newList = new ArrayList<>();
-        for (RepairInfo info : list){
-            info.setRtime(new Timestamp(info.getRtime().getTime()));
-            newList.add(info);
-        }
         try{
-            return new PageInfo(newList);
+            return new PageInfo(list);
         }catch (Exception e){
             throw new RepairInfoException("服务器异常");
         }

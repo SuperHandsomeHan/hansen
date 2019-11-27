@@ -23,13 +23,13 @@ public class UserListController extends BaseController {
     private UserListService service;
 
     @GetMapping("/list_user")
-    public ResponseVO<PageInfo> listCity(Integer pageNum, Integer pageSize){
+    public ResponseVO<PageInfo> listUser(Integer pageNum, Integer pageSize){
         PageInfo<List<Users>> pageInfo = service.listUser(pageNum, pageSize);
         return success(pageInfo);
     }
 
     @GetMapping("/get_all_user")
-    public ResponseVO<List<Users>> listCity(){
+    public ResponseVO<List<Users>> listUser(){
         return success(service.listUser());
     }
 
