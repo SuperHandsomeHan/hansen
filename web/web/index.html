@@ -194,7 +194,7 @@
                     <h4><b>基本信息</b></h4>
                   </div>
                   <div class="card-body">
-                    <form class="forms-sample">
+                    <form class="forms-sample" id="form-save-userInfo">
                       <div class="form-group">
                         <label>员工编号</label>
                         <input type="text" class="form-control" placeholder="员工编号" id="user-info-id" readonly name="uid">
@@ -337,7 +337,19 @@
         });
       });
       $('#btn-user-save').on('click', function () {
-
+        $.ajax({
+          url : 'save_userInfo',
+          method : 'post',
+          data : $('#form-save-userInfo').serialize(),
+          success : function (result) {
+            if(result.code == 200){
+              alert("保存成功");
+            }else{
+              init();
+              alert("保存失败");
+            }
+          }
+        });
       });
       $('#people-btn').on('click',function () {
         $('#content-wrapper').empty();
@@ -380,6 +392,5 @@
     });
   </script>
 </body>
-
 </html>
 

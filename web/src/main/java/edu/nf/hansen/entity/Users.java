@@ -1,5 +1,6 @@
 package edu.nf.hansen.entity;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 /**
@@ -13,6 +14,7 @@ public class Users {
     private String sex;
     private String address;
     private String tel;
+    @NotEmpty(message = "${users.password.empty}")
     private String password;
     private Double money;
     private Date joinTime;
