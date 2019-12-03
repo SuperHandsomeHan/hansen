@@ -45,6 +45,6 @@
     </insert>
 
     <update id="updateRepairInfo" parameterType="repairInfo">
-        update repair_info set r_status = #{status} where r_id = #{rid}
+        update repair_info set r_status = #{status}, r_price = #{price} where r_id = #{rid}
     </update>
 </mapper>

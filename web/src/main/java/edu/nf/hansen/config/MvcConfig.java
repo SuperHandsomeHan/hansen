@@ -88,6 +88,6 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/login.html", "/register.html", "/password_login", "/js/**", "/css/**");
+                .excludePathPatterns("/login.html", "/register.html", "/password_login", "/js/**", "/css/**", "/vendors/**", "/img/**", "/images/**", "/fonts/**", "/user_register");
     }
 }

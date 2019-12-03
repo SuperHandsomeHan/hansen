@@ -163,6 +163,7 @@
                     <div class="card-body">
                         <form class="forms-sample" id="from_update">
                             <input type="hidden" name="rid" id="update_rid">
+                            <input type="text" name="price" class="form-control" id="update_price">
                             <select class="form-control" name="status" id="update_type">
                                 <option value="进行中" selected>
                                     进行中
@@ -323,10 +324,12 @@
 
     function clearUpdate(){
         $('#update_type').val("进行中");
+        $('#update_price').val();
     }
     function loadUpdate(data) {
         $('#update_type').val(data.status);
         $('#update_rid').val(data.rid);
+        $('#update_price').val(data.price);
     }
     function clearAdd(){
         $('#add_remark').val("");
