@@ -21,11 +21,11 @@ public class UserListServiceImpl implements UserListService {
 
     @Override
     public PageInfo<List<Users>> listUser(Integer pageNum, Integer pageSize) {
+        List<Users> list = dao.listUser(pageNum, pageSize);
+        if(list == null){
+            throw new UserInfoException("服务器没有用户数据");
+        }
         try {
-            List<Users> list = dao.listUser(pageNum, pageSize);
-            if(list == null){
-                throw new UserInfoException("服务器没有用户数据");
-            }
             PageInfo pageInfo = new PageInfo(list);
             return pageInfo;
         }catch (Exception e){
@@ -35,11 +35,11 @@ public class UserListServiceImpl implements UserListService {
 
     @Override
     public List<Users> listUser() {
+        List<Users> list = dao.listUser();
+        if(list == null){
+            throw new UserInfoException("服务器没有用户数据");
+        }
         try {
-            List<Users> list = dao.listUser();
-            if(list == null){
-                throw new UserInfoException("服务器没有用户数据");
-            }
             return list;
         }catch (Exception e){
             throw new UserInfoException("服务器异常错误");

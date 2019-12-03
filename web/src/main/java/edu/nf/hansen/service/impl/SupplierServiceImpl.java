@@ -57,11 +57,11 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void addSupplier(Supplier supplier) {
+        Supplier s = dao.getSupplierByName(supplier.getSname());
+        if(s != null){
+            throw new SupplierException("该供应商已经存在");
+        }
         try{
-            Supplier s = dao.getSupplierByName(supplier.getSname());
-            if(s != null){
-                throw new SupplierException("该供应商已经存在");
-            }
             dao.addSupplier(supplier);
         }catch (Exception e){
             throw new SupplierException("服务器异常");
@@ -79,13 +79,13 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void deleteSupplier(String ... sid) {
-        try{
-            for (String id : sid){
-                Supplier s = dao.getSupplierById(id);
-                if(s == null){
-                    throw new SupplierException("该供应商不存在");
-                }
+        for (String id : sid){
+            Supplier s = dao.getSupplierById(id);
+            if(s == null){
+                throw new SupplierException("该供应商不存在");
             }
+        }
+        try{
             dao.deleteSupplier(sid);
         }catch (Exception e){
             throw new SupplierException("服务器异常");

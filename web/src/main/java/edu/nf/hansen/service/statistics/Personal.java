@@ -35,6 +35,9 @@ public class Personal {
     private AttendanceDao attendanceDao;
     private RepairInfoDao repairInfoDao;
     private GoodsDao goodsDao;
+    private int nowYear;
+    private int nowMonth;
+    private int nowDay;
 
     public Personal(String uid){
         this.uid = uid;
@@ -47,13 +50,10 @@ public class Personal {
 
     public Integer getWorkYear() {
         Users user = userDao.getUserById(uid);
-        int nowYear = calendar.get(Calendar.YEAR);
-        int nowMonth = calendar.get(Calendar.MONTH);
-        int nowDay = calendar.get(Calendar.DAY_OF_MONTH);
         workCal.setTime(user.getJoinTime());
         int workYear = workCal.get(Calendar.YEAR);
-        int workMonth = workCal.get(Calendar.MONTH);
-        int workDay = workCal.get(Calendar.DAY_OF_MONTH);
+        int workMonth = workCal.get(Calendar.MONTH) + 1;
+        int workDay = workCal.get(Calendar.DATE);
         //得到年差
         workYear = nowYear - workYear;
         //若目前月数少于开始工作时间的月数，年差-1
@@ -69,8 +69,6 @@ public class Personal {
     }
 
     public Double getToMonthWages() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
         Users user = userDao.getUserById(uid);
         List<RepairInfo> list = repairInfoDao.listRepairInfoByDateAndId(nowYear + "-" + nowMonth, uid);
         toMonthWages = user.getMoney();
@@ -89,8 +87,6 @@ public class Personal {
     }
 
     public Integer getToMonthAttendanceNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
         List<Attendance> list = attendanceDao.listAttendanceByDateAndId(nowYear + "-" + nowMonth, uid);
         for (Attendance attendance : list){
             if(attendance.getAttendanceType().equals("正常")){
@@ -101,9 +97,8 @@ public class Personal {
     }
 
     public Double getToYearSalary() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
         Users user = userDao.getUserById(uid);
-        List<RepairInfo> list = repairInfoDao.listRepairInfoByDateAndId(nowYear, uid);
+        List<RepairInfo> list = repairInfoDao.listRepairInfoByDateAndId(String.valueOf(nowYear), uid);
         for (RepairInfo repairInfo : list){
             Goods goods = goodsDao.getGoodsById(String.valueOf(repairInfo.getGoods().getGid()));
             toYearSalary += (goods.getSellPrice() - goods.getBuyPrice()) * 0.1;
@@ -112,8 +107,7 @@ public class Personal {
     }
 
     public Integer getToYearNotAttendanceNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        List<Attendance> list = attendanceDao.listAttendanceByDateAndId(nowYear, uid);
+        List<Attendance> list = attendanceDao.listAttendanceByDateAndId(String.valueOf(nowYear), uid);
         for (Attendance attendance : list){
             if(attendance.getAttendanceType().equals("缺勤")){
                 toYearNotAttendanceNum++;
@@ -123,8 +117,7 @@ public class Personal {
     }
 
     public Integer getToYearLeaveNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        List<Attendance> list = attendanceDao.listAttendanceByDateAndId(nowYear, uid);
+        List<Attendance> list = attendanceDao.listAttendanceByDateAndId(String.valueOf(nowYear), uid);
         for (Attendance attendance : list){
             if(attendance.getAttendanceType().equals("请假")){
                 toYearLeaveNum++;
@@ -140,8 +133,6 @@ public class Personal {
     }
 
     public Integer getToMonthOrderNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
         List<RepairInfo> list = repairInfoDao.listRepairInfoByDateAndId(nowYear + "-" + nowMonth, uid);
         toMonthOrderNum = list.size();
         return toMonthOrderNum;
@@ -150,6 +141,9 @@ public class Personal {
     private void init(){
         calendar = Calendar.getInstance();
         workCal = Calendar.getInstance();
+        nowYear = calendar.get(Calendar.YEAR);
+        nowMonth = calendar.get(Calendar.MONTH) + 1;
+        nowDay = calendar.get(Calendar.DATE);
         clear();
     }
 

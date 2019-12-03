@@ -24,16 +24,12 @@ public class PasswordLoginServiceImpl implements LoginService {
      */
     @Override
     public void login(String tel, String pwd) {
-        try {
-            Users user = dao.getUserByTel(tel);
-            if(user == null){
-                if(!user.getPassword().equals(pwd)){
-                    throw new LoginException("账号或密码错误");
-                }
-                throw new LoginException("账号或密码错误");
-            }
-        }catch (Exception e){
-            throw new LoginException("服务器异常错误");
+        Users user = dao.getUserByTel(tel);
+        if(user == null){
+            throw new LoginException("账号或密码错误");
+        }
+        if(!user.getPassword().equals(pwd)){
+            throw new LoginException("账号或密码错误");
         }
     }
 }

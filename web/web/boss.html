@@ -53,7 +53,7 @@
                                                 <i class="mdi mdi-clipboard-text mr-3 icon-lg text-warning"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">今日迟到人数</small>
-                                                    <h5 class="mr-2 mb-0">￥<span id="toDayNotLateNum"></span></h5>
+                                                    <h5 class="mr-2 mb-0">￥<span id="toDayLateNum"></span></h5>
                                                 </div>
                                             </div>
                                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
@@ -92,7 +92,7 @@
                                                 <i class="mdi mdi-clipboard-text mr-3 icon-lg text-warning"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">本月迟到人数</small>
-                                                    <h5 class="mr-2 mb-0">￥<span id="toMonthNotLateNum"></span></h5>
+                                                    <h5 class="mr-2 mb-0">￥<span id="toMonthLateNum"></span></h5>
                                                 </div>
                                             </div>
                                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
@@ -199,12 +199,12 @@
                 $('#toDayOrderNum').text(result.data.toDayOrderNum);
                 $('#toDayIncome').text(result.data.toDayIncome);
                 $('#toDayNotAttendanceNum').text(result.data.toDayNotAttendanceNum);
-                $('#toDayNotLateNum').text(result.data.toDayNotLateNum);
+                $('#toDayLateNum').text(result.data.toDayLateNum);
                 $('#toDayLeaveNum').text(result.data.toDayLeaveNum);
                 $('#toMonthOrderNum').text(result.data.toMonthOrderNum);
                 $('#toMonthIncome').text(result.data.toMonthIncome);
                 $('#toMonthNotAttendanceNum').text(result.data.toMonthNotAttendanceNum);
-                $('#toMonthNotLateNum').text(result.data.toMonthNotLateNum);
+                $('#toMonthLateNum').text(result.data.toMonthLateNum);
                 $('#toMonthLeaveNum').text(result.data.toMonthLeaveNum);
 
             }

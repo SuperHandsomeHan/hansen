@@ -48,11 +48,11 @@ public class LevelServiceImpl implements LevelService {
 
     @Override
     public void addLevel(Level level) {
+        Level l = dao.getLevelByName(level.getLevelName());
+        if(l != null){
+            throw new LevelException("该职位已经存在");
+        }
         try {
-            Level l = dao.getLevelByName(level.getLevelName());
-            if(l != null){
-                throw new LevelException("该职位已经存在");
-            }
             dao.addLevel(level);
         } catch (Exception e){
             throw new LevelException("服务器异常");
@@ -70,11 +70,11 @@ public class LevelServiceImpl implements LevelService {
 
     @Override
     public void deleteLevel(String levelId) {
+        Level l = dao.getLevelById(levelId);
+        if(l == null){
+            throw new LevelException("该职位不存在");
+        }
         try {
-            Level l = dao.getLevelById(levelId);
-            if(l == null){
-                throw new LevelException("该职位不存在");
-            }
             dao.deleteLevel(levelId);
         } catch (Exception e){
             throw new LevelException("服务器异常");

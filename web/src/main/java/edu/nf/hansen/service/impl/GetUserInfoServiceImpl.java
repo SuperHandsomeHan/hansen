@@ -26,18 +26,20 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
     public Users getUserInfo(String data) {
         try {
             Users user = dao.getUserById(data);
-            if(user == null){
+            if (user == null) {
                 user = dao.getUserByTel(data);
-                if(user == null){
+                if (user == null) {
                     throw new UserInfoException("没有该用户");
-                }else{
+                } else {
                     return user;
                 }
-            }else{
+            } else {
                 return user;
             }
-        }catch (Exception e){
-            throw new UserInfoException("服务器异常错误");
+        }catch(UserInfoException e){
+            throw e;
+        }catch(RuntimeException e){
+            throw new RuntimeException("服务器异常");
         }
     }
 }

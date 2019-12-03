@@ -19,36 +19,33 @@ public class Boss {
     private Integer toDayOrderNum;
     private Double toDayIncome;
     private Integer toDayNotAttendanceNum;
-    private Integer toDayNotLateNum;
+    private Integer toDayLateNum;
     private Integer toDayLeaveNum;
     private Integer toMonthOrderNum;
     private Double toMonthIncome;
     private Integer toMonthNotAttendanceNum;
-    private Integer toMonthNotLateNum;
+    private Integer toMonthLateNum;
     private Integer toMonthLeaveNum;
     private Calendar calendar;
     private Calendar workCal;
     private AttendanceDao attendanceDao;
     private RepairInfoDao repairInfoDao;
     private GoodsDao goodsDao;
+    private String nowYear;
+    private String nowMonth;
+    private String nowDay;
 
     public Boss(){
         init();
     }
 
     public Integer getToDayOrderNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
-        String nowDay = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
         List<RepairInfo> list = repairInfoDao.listRepairInfoByDate(nowYear + "-" + nowMonth + "-" + nowDay);
         toDayOrderNum = list.size();
         return toDayOrderNum;
     }
 
     public Double getToDayIncome() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
-        String nowDay = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
         List<RepairInfo> list = repairInfoDao.listRepairInfoByDate(nowYear + "-" + nowMonth + "-" + nowDay);
         for (RepairInfo repairInfo : list){
             Goods goods = goodsDao.getGoodsById(String.valueOf(repairInfo.getGoods().getGid()));
@@ -59,9 +56,6 @@ public class Boss {
     }
 
     public Integer getToDayNotAttendanceNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
-        String nowDay = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
         List<Attendance> list = attendanceDao.listAttendanceByDate(nowYear + "-" + nowMonth + "-" + nowDay);
         for (Attendance attendance : list){
             if(attendance.getAttendanceType().equals("缺勤")){
@@ -71,23 +65,17 @@ public class Boss {
         return toDayNotAttendanceNum;
     }
 
-    public Integer getToDayNotLateNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
-        String nowDay = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+    public Integer getToDayLateNum() {
         List<Attendance> list = attendanceDao.listAttendanceByDate(nowYear + "-" + nowMonth + "-" + nowDay);
         for (Attendance attendance : list){
             if(attendance.getAttendanceType().equals("迟到")){
-                toDayNotLateNum++;
+                toDayLateNum++;
             }
         }
-        return toDayNotLateNum;
+        return toDayLateNum;
     }
 
     public Integer getToDayLeaveNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
-        String nowDay = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
         List<Attendance> list = attendanceDao.listAttendanceByDate(nowYear + "-" + nowMonth + "-" + nowDay);
         for (Attendance attendance : list){
             if(attendance.getAttendanceType().equals("请假")){
@@ -98,16 +86,12 @@ public class Boss {
     }
 
     public Integer getToMonthOrderNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
         List<RepairInfo> list = repairInfoDao.listRepairInfoByDate(nowYear + "-" + nowMonth);
         toMonthOrderNum = list.size();
         return toMonthOrderNum;
     }
 
     public Double getToMonthIncome() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
         List<RepairInfo> list = repairInfoDao.listRepairInfoByDate(nowYear + "-" + nowMonth);
         for (RepairInfo repairInfo : list){
             Goods goods = goodsDao.getGoodsById(String.valueOf(repairInfo.getGoods().getGid()));
@@ -118,8 +102,6 @@ public class Boss {
     }
 
     public Integer getToMonthNotAttendanceNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
         List<Attendance> list = attendanceDao.listAttendanceByDate(nowYear + "-" + nowMonth);
         for (Attendance attendance : list){
             if(attendance.getAttendanceType().equals("缺勤")){
@@ -129,21 +111,17 @@ public class Boss {
         return toMonthNotAttendanceNum;
     }
 
-    public Integer getToMonthNotLateNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
+    public Integer getToMonthLateNum() {
         List<Attendance> list = attendanceDao.listAttendanceByDate(nowYear + "-" + nowMonth);
         for (Attendance attendance : list){
             if(attendance.getAttendanceType().equals("迟到")){
-                toMonthNotLateNum++;
+                toMonthLateNum++;
             }
         }
-        return toMonthNotLateNum;
+        return toMonthLateNum;
     }
 
     public Integer getToMonthLeaveNum() {
-        String nowYear = String.valueOf(calendar.get(Calendar.YEAR));
-        String nowMonth = String.valueOf(calendar.get(Calendar.MONTH));
         List<Attendance> list = attendanceDao.listAttendanceByDate(nowYear + "-" + nowMonth);
         for (Attendance attendance : list){
             if(attendance.getAttendanceType().equals("请假")){
@@ -168,6 +146,14 @@ public class Boss {
     private void init(){
         calendar = Calendar.getInstance();
         workCal = Calendar.getInstance();
+        nowYear = String.valueOf(calendar.get(Calendar.YEAR));
+        nowMonth = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+        nowDay = "0";
+        if(calendar.get(Calendar.DATE) < 10){
+            nowDay += String.valueOf(calendar.get(Calendar.DATE));
+        }else{
+            nowDay = String.valueOf(calendar.get(Calendar.DATE));
+        }
         clear();
     }
 
@@ -175,12 +161,12 @@ public class Boss {
         toDayOrderNum = 0;
         toDayIncome = 0.0;
         toDayNotAttendanceNum = 0;
-        toDayNotLateNum = 0;
+        toDayLateNum = 0;
         toDayLeaveNum = 0;
         toMonthOrderNum = 0;
         toMonthIncome = 0.0;
         toMonthNotAttendanceNum = 0;
-        toMonthNotLateNum = 0;
+        toMonthLateNum = 0;
         toMonthLeaveNum = 0;
     }
 }

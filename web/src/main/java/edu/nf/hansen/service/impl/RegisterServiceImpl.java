@@ -21,17 +21,17 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public Users register(Users user) {
+        Users u = dao.getUserByTel(user.getTel());
+        if(u == null){
+            throw new UserInfoException("该用户还没录入系统");
+        }
+        if(u.getPassword() != null || u.getJoinTime() != null){
+            throw new UserInfoException("该用户已经存在");
+        }
+        if(!user.getUserName().equals(u.getUserName())){
+            throw new UserInfoException("用户名错误");
+        }
         try {
-            Users u = dao.getUserByTel(user.getTel());
-            if(u == null){
-                throw new UserInfoException("该用户还没录入系统");
-            }
-            if(u.getPassword() != null || u.getJoinTime() != null){
-                throw new UserInfoException("该用户已经存在");
-            }
-            if(!user.getUserName().equals(u.getUserName())){
-                throw new UserInfoException("用户名错误");
-            }
             u.setPassword(user.getPassword());
             u.setJoinTime(new Date());
             u.setJoinTime(new Timestamp(u.getJoinTime().getTime()));

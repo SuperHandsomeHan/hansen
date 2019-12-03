@@ -57,11 +57,11 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public void addGoods(Goods goods) {
+        Goods g = dao.getGoodsById(goods.getGname());
+        if(g != null){
+            throw new GoodsException("该供应商已经存在");
+        }
         try{
-            Goods g = dao.getGoodsById(goods.getGname());
-            if(g != null){
-                throw new GoodsException("该供应商已经存在");
-            }
             dao.addGoods(goods);
         }catch (Exception e){
             throw new GoodsException("服务器异常");
@@ -79,13 +79,13 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public void deleteGoods(String... gid) {
-        try{
-            for (String id : gid){
-                Goods g = dao.getGoodsById(id);
-                if(g == null){
-                    throw new GoodsException("该供应商不存在");
-                }
+        for (String id : gid){
+            Goods g = dao.getGoodsById(id);
+            if(g == null){
+                throw new GoodsException("该供应商不存在");
             }
+        }
+        try{
             dao.deleteGoods(gid);
         }catch (Exception e){
             throw new GoodsException("服务器异常");

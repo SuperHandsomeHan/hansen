@@ -60,7 +60,7 @@ public class AttendanceServiceImpl implements AttendanceService {
             }
             return list;
         }catch (Exception e){
-            throw new AttendanceException("当天没有数据");
+            throw new AttendanceException("服务器异常");
         }
     }
 

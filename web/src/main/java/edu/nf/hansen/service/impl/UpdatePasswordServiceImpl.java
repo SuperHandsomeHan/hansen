@@ -18,16 +18,15 @@ public class UpdatePasswordServiceImpl implements UpdatePasswordService {
 
     @Override
     public void updatePwd(Users user, String newPassword) {
+        Users u = dao.getUserById(user.getUid());
+        if(!user.getPassword().equals(u.getPassword())){
+            throw new UserInfoException("密码错误");
+        }
         try {
-            Users u = dao.getUserById(user.getUid());
-            if(user.getPassword().equals(u.getPassword())){
-                u.setPassword(newPassword);
-                dao.updateUser(u);
-            }else{
-                throw new UserInfoException("密码错误");
-            }
-        }catch (Exception e){
-            throw new UserInfoException("服务器异常");
+            u.setPassword(newPassword);
+            dao.updateUser(u);
+        }catch (RuntimeException e){
+            throw new UserInfoException(e);
         }
     }
 }
