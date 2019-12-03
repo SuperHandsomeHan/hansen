@@ -35,35 +35,35 @@
                                 <i class="mdi mdi-calendar-heart icon-lg mr-3 text-primary"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">工龄</small>
-                                    <h5 class="mb-0 d-inline-block"><span>4</span> 年</h5>
+                                    <h5 class="mb-0 d-inline-block"><span id="workYear"></span> 年</h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-database-minus mr-3 icon-lg text-warning"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">本月工资</small>
-                                    <h5 class="mr-2 mb-0">￥<span>577545</span></h5>
+                                    <h5 class="mr-2 mb-0">￥<span id="toMonthWages"></span></h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-database-minus mr-3 icon-lg text-warning"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">底薪</small>
-                                    <h5 class="mr-2 mb-0">￥<span>5775</span></h5>
+                                    <h5 class="mr-2 mb-0">￥<span id="salary"></span></h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-clipboard-outline mr-3 icon-lg text-info"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">本月订单数</small>
-                                    <h5 class="mr-2 mb-0">9833550</h5>
+                                    <h5 class="mr-2 mb-0" id="toMonthOrderNum"></h5>
                                 </div>
                             </div>
                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-clipboard-text mr-3 icon-lg text-success"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">本月出勤数</small>
-                                    <h5 class="mr-2 mb-0">200</h5>
+                                    <h5 class="mr-2 mb-0" id="toMonthAttendanceNum"></h5>
                                 </div>
                             </div>
                         </div>
@@ -74,28 +74,28 @@
                                 <i class="mdi mdi-database-minus icon-lg mr-3 text-warning"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">今年年终奖</small>
-                                    <h5 class="mb-0 d-inline-block">￥<span>2000</span></h5>
+                                    <h5 class="mb-0 d-inline-block">￥<span id="toYearSalary"></span></h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-bookmark-remove mr-3 icon-lg text-danger"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">今年缺勤数</small>
-                                    <h5 class="mr-2 mb-0">225</h5>
+                                    <h5 class="mr-2 mb-0" id="toYearNotAttendanceNum"></h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-bookmark-remove mr-3 icon-lg text-danger"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">今年请假数</small>
-                                    <h5 class="mr-2 mb-0">50</h5>
+                                    <h5 class="mr-2 mb-0" id="toYearLeaveNum"></h5>
                                 </div>
                             </div>
                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-flag mr-3 icon-lg text-info"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">职位</small>
-                                    <h5 class="mr-2 mb-0">老板</h5>
+                                    <h5 class="mr-2 mb-0" id="position"></h5>
                                 </div>
                             </div>
                         </div>
@@ -290,6 +290,23 @@
     }
     function init() {
         clearAdd();
+        $.ajax({
+           url : 'get_personal',
+           method : 'get',
+           data : 'uid=' + $('.user-info-id').val(),
+           success : function (result) {
+               $('#workYear').text(result.data.workYear);
+               $('#toMonthWages').text(result.data.toMonthWages);
+               $('#salary').text(result.data.salary);
+               $('#toMonthOrderNum').text(result.data.toMonthOrderNum);
+               $('#toMonthAttendanceNum').text(result.data.toMonthAttendanceNum);
+               $('#toYearSalary').text(result.data.toYearSalary);
+               $('#toYearNotAttendanceNum').text(result.data.toYearNotAttendanceNum);
+               $('#toYearLeaveNum').text(result.data.toYearLeaveNum);
+               $('#position').text(result.data.position);
+
+           } 
+        });
         $.ajax({
             url : 'list_repairInfo',
             method : 'get',

@@ -32,6 +32,12 @@
         where a.attendance_date like #{date}"%"
     </select>
 
+    <select id="listAttendanceByDateAndId" resultMap="attendanceMap">
+        select u.u_id, u.u_name, u.u_tel, a.attendance_id, a.attendance_date, a.attendance_type
+        from attendance_info a right join user_info u on u.u_id = a.attendance_user
+        where a.attendance_date like #{param1}"%" and u.u_id = #{param2}
+    </select>
+
     <insert id="addAttendance" parameterType="list">
         insert into attendance_info(attendance_id ,attendance_user, attendance_type, attendance_date) values
         <foreach collection="list" item="attendance" separator=",">

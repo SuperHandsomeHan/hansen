@@ -14,6 +14,8 @@ public interface AttendanceDao {
 
     List<Attendance> listAttendanceByDate(String date);
 
+    List<Attendance> listAttendanceByDateAndId(String date, String uid);
+
     Attendance getAttendanceByUid(String uid);
 
     void addAttendance(List<Attendance> list);

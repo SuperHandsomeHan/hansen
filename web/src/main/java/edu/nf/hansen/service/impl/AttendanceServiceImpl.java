@@ -72,8 +72,6 @@ public class AttendanceServiceImpl implements AttendanceService {
                 Attendance a = new Attendance();
                 a.setAttendanceId(attendanceId[i]);
                 a.setAttendanceType(attendanceType[i]);
-                System.out.println(attendanceId[i]);
-                System.out.println(attendanceType[i]);
                 list.add(a);
             }
             dao.updateAttendance(list);

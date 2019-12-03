@@ -12,6 +12,10 @@ import java.util.List;
 public interface RepairInfoDao {
     List<RepairInfo> listRepairInfo(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
+    List<RepairInfo> listRepairInfoByDate(String date);
+
+    List<RepairInfo> listRepairInfoByDateAndId(String date, String uid);
+
     RepairInfo getRepairInfoById(String rid);
 
     void addRepairInfo(RepairInfo repairInfo);

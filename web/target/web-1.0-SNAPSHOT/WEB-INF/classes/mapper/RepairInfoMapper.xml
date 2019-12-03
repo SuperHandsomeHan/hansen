@@ -31,6 +31,22 @@
         from repair_info r left join user_info u on r.u_id = u.u_id left join goods_info g on r.g_id = g.g_id
         ORDER BY r.r_time desc
     </select>
+
+    <select id="listRepairInfoByDate" resultMap="repairInfoMap" parameterType="string">
+        select r.r_id, r.r_remark, r.r_time, r.r_price, r.car_user_tel, r.car_user_name,
+        r.r_status, u.u_id, u.u_name, g.g_id, g.g_name
+        from repair_info r left join user_info u on r.u_id = u.u_id left join goods_info g on r.g_id = g.g_id
+        where r.r_time like #{date}"%"
+        ORDER BY r.r_time desc
+    </select>
+
+    <select id="listRepairInfoByDateAndId" resultMap="repairInfoMap">
+        select r.r_id, r.r_remark, r.r_time, r.r_price, r.car_user_tel, r.car_user_name,
+        r.r_status, u.u_id, u.u_name, g.g_id, g.g_name
+        from repair_info r left join user_info u on r.u_id = u.u_id left join goods_info g on r.g_id = g.g_id
+        where r.r_time like #{param1}"%" and u.u_id = #{param2}
+        ORDER BY r.r_time desc
+    </select>
     
     <select id="getRepairInfoById" resultMap="repairInfoMap" parameterType="java.lang.String">
         select r.r_id, r.r_remark, r.r_time, r.r_price, r.car_user_tel, r.car_user_name,

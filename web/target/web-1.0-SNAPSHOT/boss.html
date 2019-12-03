@@ -32,35 +32,35 @@
                                                 <i class="mdi mdi-clipboard-outline mr-3 icon-lg text-info"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">今日订单数</small>
-                                                    <h5 class="mb-0 d-inline-block"><span>14</span></h5>
+                                                    <h5 class="mb-0 d-inline-block"><span id="toDayOrderNum"></span></h5>
                                                 </div>
                                             </div>
                                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                                 <i class="mdi mdi-database-minus mr-3 icon-lg text-warning"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">今日收入</small>
-                                                    <h5 class="mr-2 mb-0">￥<span>575</span></h5>
+                                                    <h5 class="mr-2 mb-0">￥<span id="toDayIncome"></span></h5>
                                                 </div>
                                             </div>
                                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                                 <i class="mdi mdi-clipboard-text mr-3 icon-lg text-danger"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">今日缺勤人数</small>
-                                                    <h5 class="mr-2 mb-0">0</h5>
+                                                    <h5 class="mr-2 mb-0" id="toDayNotAttendanceNum"></h5>
                                                 </div>
                                             </div>
                                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                                 <i class="mdi mdi-clipboard-text mr-3 icon-lg text-warning"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">今日迟到人数</small>
-                                                    <h5 class="mr-2 mb-0">￥<span>2</span></h5>
+                                                    <h5 class="mr-2 mb-0">￥<span id="toDayNotLateNum"></span></h5>
                                                 </div>
                                             </div>
                                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                                 <i class="mdi mdi-clipboard-text mr-3 icon-lg text-dark"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">今日请假人数</small>
-                                                    <h5 class="mr-2 mb-0">2</h5>
+                                                    <h5 class="mr-2 mb-0" id="toDayLeaveNum"></h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -71,35 +71,35 @@
                                                 <i class="mdi mdi-clipboard-outline mr-3 icon-lg text-info"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">本月订单数</small>
-                                                    <h5 class="mb-0 d-inline-block"><span>1423</span></h5>
+                                                    <h5 class="mb-0 d-inline-block"><span id="toMonthOrderNum"></span></h5>
                                                 </div>
                                             </div>
                                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                                 <i class="mdi mdi-database-minus mr-3 icon-lg text-warning"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">本月收入</small>
-                                                    <h5 class="mr-2 mb-0">￥<span>57235</span></h5>
+                                                    <h5 class="mr-2 mb-0">￥<span id="toMonthIncome"></span></h5>
                                                 </div>
                                             </div>
                                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                                 <i class="mdi mdi-clipboard-text mr-3 icon-lg text-danger"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">本月缺勤人数</small>
-                                                    <h5 class="mr-2 mb-0">6</h5>
+                                                    <h5 class="mr-2 mb-0" id="toMonthNotAttendanceNum"></h5>
                                                 </div>
                                             </div>
                                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                                 <i class="mdi mdi-clipboard-text mr-3 icon-lg text-warning"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">本月迟到人数</small>
-                                                    <h5 class="mr-2 mb-0">￥<span>23</span></h5>
+                                                    <h5 class="mr-2 mb-0">￥<span id="toMonthNotLateNum"></span></h5>
                                                 </div>
                                             </div>
                                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                                 <i class="mdi mdi-clipboard-text mr-3 icon-lg text-dark"></i>
                                                 <div class="d-flex flex-column justify-content-around">
                                                     <small class="mb-1 text-muted">本月请假人数</small>
-                                                    <h5 class="mr-2 mb-0">23</h5>
+                                                    <h5 class="mr-2 mb-0" id="toMonthLeaveNum"></h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -192,6 +192,23 @@
         });
     });
     function init() {
+        $.ajax({
+            url : 'get_boss',
+            method : 'get',
+            success : function (result) {
+                $('#toDayOrderNum').text(result.data.toDayOrderNum);
+                $('#toDayIncome').text(result.data.toDayIncome);
+                $('#toDayNotAttendanceNum').text(result.data.toDayNotAttendanceNum);
+                $('#toDayNotLateNum').text(result.data.toDayNotLateNum);
+                $('#toDayLeaveNum').text(result.data.toDayLeaveNum);
+                $('#toMonthOrderNum').text(result.data.toMonthOrderNum);
+                $('#toMonthIncome').text(result.data.toMonthIncome);
+                $('#toMonthNotAttendanceNum').text(result.data.toMonthNotAttendanceNum);
+                $('#toMonthNotLateNum').text(result.data.toMonthNotLateNum);
+                $('#toMonthLeaveNum').text(result.data.toMonthLeaveNum);
+
+            }
+        });
         $.ajax({
            url : 'list_attendance',
             method : 'get',
