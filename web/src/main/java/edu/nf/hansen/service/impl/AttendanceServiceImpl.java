@@ -53,11 +53,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public List<Attendance> listAttendanceByDate(String date) {
+        List<Attendance> list = dao.listAttendanceByDate(date);
+        if(list.size() == 0 || list == null){
+            throw new AttendanceException("当天没有数据");
+        }
         try{
-            List<Attendance> list = dao.listAttendanceByDate(date);
-            if(list.size() == 0 || list == null){
-                throw new AttendanceException("当天没有数据");
-            }
             return list;
         }catch (Exception e){
             throw new AttendanceException("服务器异常");
