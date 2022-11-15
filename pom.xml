@@ -28,7 +28,7 @@
         <!-- servlet版本-->
         <servlet.version>4.0.1</servlet.version>
         <!-- jackson版本 -->
-        <jackson.version>2.10.0</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <!-- hibernate版本，验证-->
         <hibernate.version>6.0.13.Final</hibernate.version>
         <!-- fileupload版本，上传 -->
